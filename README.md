@@ -1,5 +1,6 @@
 # Multi-Party Computation Cryptography - Final Project
 
+
 <img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d7f77a75-62cb-42c5-a6e1-dce23579a213" width=150px />
 
 |<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" /> |<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" /> |<img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white" />  |
@@ -8,7 +9,7 @@
 |<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /> | <img src="https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white" /> | <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" /> |
 
 
-
+![tenor](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/b900f69f-0f6e-4a04-a579-478dfcbc34ba)
 - [Multi-Party Computation Cryptography - Final Project](#multi-party-computation-cryptography---final-project)
   * [About](#about)
   * [What is Multi-Party Computation (MPC)?](#what-is-multi-party-computation-mpc)
