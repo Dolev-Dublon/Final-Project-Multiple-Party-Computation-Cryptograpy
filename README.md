@@ -50,6 +50,8 @@ This project is an implementation of a secure multi-party protocol for the secur
 ## What is Multi-Party Computation (MPC)?
 
 [Multi-Party Computation (MPC)](https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a subfield of cryptography that enables multiple entities to jointly compute a function over their inputs while keeping those inputs private. In the context of this project, we focus on a 2-party computation, where both entities share inputs and follow the MPC protocol, ensuring the privacy of their inputs.
+***Without the intervention of a server (Third party) in the proccess.***
+![good mpc](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/c410f5db-4c8a-449f-9cb7-777628cf9003)
 
 
 ## Authors
