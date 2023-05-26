@@ -51,8 +51,8 @@ This project is an implementation of a secure multi-party protocol for the secur
 
 [Multi-Party Computation (MPC)](https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a subfield of cryptography that enables multiple entities to jointly compute a function over their inputs while keeping those inputs private. In the context of this project, we focus on a 2-party computation, where both entities share inputs and follow the MPC protocol, ensuring the privacy of their inputs.
 ***Without the intervention of a server (Third party) in the proccess.***
-<img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/c410f5db-4c8a-449f-9cb7-777628cf9003" width=400px style="width: 150px; height: 150px; object-fit: cover; object-position: 25% 25%; " />
 
+<img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/0e4c30fe-6703-43d7-b91f-f775ecc49dd2" width=400px  />
 
 ## Authors
 - [@Dolev Dublon](https://www.github.com/dolev146)
