@@ -4,7 +4,7 @@
 
 - [Multi-Party Computation Cryptography - Final Project](#multi-party-computation-cryptography---final-project)
   * [About](#about)
-  * [What is Multi-Party Computation (MPC)?](#what-is-multi-party-computation--mpc--)
+  * [What is Multi-Party Computation (MPC)?](#what-is-multi-party-computation-(mpc)?)
   * [Authors](#authors)
   * [Project Overview](#project-overview)
   * [Project Goal](#project-goal)
