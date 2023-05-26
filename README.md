@@ -49,6 +49,8 @@ Multi-Party Computation (MPC) is a subfield of cryptography that enables multipl
 ## Authors
 - [@Dolev Dublon](https://www.github.com/dolev146)
 - [@Yakov Khodorkovski](https://github.com/yakov103)
+- [@Daniel Zaken](https://github.com/aaaa)
+- [@Aviad Gilboa](https://github.com/aaaa)
 
 
 ## Project Overview
@@ -60,7 +62,7 @@ The primary objective of this project is to implement a secure multi-party proto
 
 ## Introduction
 
-Our protocol deals with two semi-honest groups. Since the late 1980s, general protocols have theoretically allowed secure computation in polynomial time and with a security parameter, enabling both players to compute safely under computational complexity assumptions. While these general protocols are theoretically efficient, they are not always practically efficient. Therefore, people have been trying to create specific security protocols for specific functions that are more efficient than the general protocols.​
+Our protocol deals with two semi-honest groups. Since the late 1980s, general protocols have theoretically allowed secure computation in polynomial time and with a security parameter, enabling both players to compute safely under computational complexity assumptions. While these general protocols are theoretically efficient, they are not always practically efficient. Therefore, people have been trying to create specific security protocols for specific functions that are more efficient than the general protocols.
 
 The use of various generic libraries, such as YAO, and GMW, has proven to be less efficient, prompting efforts to develop more efficient approaches. We will implement the All-Pairs Shortest Path functionality to contribute to the ecosystem of implementations, aiming to create more efficient implementations in this domain.
 
@@ -68,7 +70,7 @@ The use of various generic libraries, such as YAO, and GMW, has proven to be les
 
 ### Design Considerations
 ***There were two algorithms for the set union to implement in our protocol:***
-1. A provided pseudocode that utilized YAO and GMW for the calculation of the minimum using a generic library. However, this did not fit with our chosen programming language.​
+1. A provided pseudocode that utilized YAO and GMW for the calculation of the minimum using a generic library. However, this did not fit with our chosen programming language.
 2. A tree pruning method that utilized ElGamal and BitOr to reveal information securely.
 
 ### Selected approach
