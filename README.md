@@ -2,6 +2,41 @@
 
 ![Project Logo](logo_link)
 
+- [Multi-Party Computation Cryptography - Final Project](#multi-party-computation-cryptography---final-project)
+  * [About](#about)
+  * [What is Multi-Party Computation (MPC)?](#what-is-multi-party-computation--mpc--)
+  * [Authors](#authors)
+  * [Project Overview](#project-overview)
+  * [Project Goal](#project-goal)
+  * [Introduction](#introduction)
+  * [Methods & Algorithms](#methods---algorithms)
+    + [Design Considerations](#design-considerations)
+    + [Selected approach](#selected-approach)
+  * [Pseudo Code Bit OR](#pseudo-code-bit-or)
+    + [Procedure PrivacyPreservingBitOr:](#procedure-privacypreservingbitor-)
+    + [Infrastracture](#infrastracture)
+    + [User Interface](#user-interface)
+  * [Development proccess](#development-proccess)
+  * [API Reference](#api-reference)
+      - [Get item](#get-item)
+      - [add(num1, num2)](#add-num1--num2-)
+  * [Appendix](#appendix)
+  * [License](#license)
+  * [Tech Stack](#tech-stack)
+  * [Usage/Examples](#usage-examples)
+  * [Demo](#demo)
+  * [Deployment](#deployment)
+  * [Environment Variables](#environment-variables)
+  * [Run Locally](#run-locally)
+- [Files & Project structure](#files---project-structure)
+- [Synchronization](#synchronization)
+  * [Manage file synchronization](#manage-file-synchronization)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
+
+
 ## About
 
 This project is an implementation of a secure multi-party protocol for the secure set-union problem and the secure all-pairs shortest path problem. The protocol is devised from existing literature and is tailored for enhanced efficiency in a semi-honest setting with a dishonest majority.
