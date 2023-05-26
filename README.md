@@ -1,14 +1,11 @@
 # Multi-Party Computation Cryptography - Final Project
 
-![Project Logo](logo_link)
+![multi party (1)](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d7f77a75-62cb-42c5-a6e1-dce23579a213)
 
 |<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" /> |<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" /> |<img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white" />  |
 |-|-|-|
 |<img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white" /> | <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /> | <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> |
 |<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /> | <img src="https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white" /> | <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" /> |
-
-
-
 
 
 
@@ -52,7 +49,7 @@ This project is an implementation of a secure multi-party protocol for the secur
 
 ## What is Multi-Party Computation (MPC)?
 
-Multi-Party Computation (MPC) is a subfield of cryptography that enables multiple entities to jointly compute a function over their inputs while keeping those inputs private. In the context of this project, we focus on a 2-party computation, where both entities share inputs and follow the MPC protocol, ensuring the privacy of their inputs.
+[Multi-Party Computation (MPC)](https://en.wikipedia.org/wiki/Secure_multi-party_computation) is a subfield of cryptography that enables multiple entities to jointly compute a function over their inputs while keeping those inputs private. In the context of this project, we focus on a 2-party computation, where both entities share inputs and follow the MPC protocol, ensuring the privacy of their inputs.
 
 
 ## Authors
@@ -85,6 +82,12 @@ The use of various generic libraries, such as YAO, and GMW, has proven to be les
 ### Selected approach
 **We have decided to implement the BitOr operation to achieve a union without relying on a generic library.**
 
+| Image | Cryptographer | Link |
+|:-----:|:-------------:|:----:|
+| <img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d45f6e6d-8011-4830-bebd-650de1939874" width=100px /> | Elgamal | [Wikipedia](https://en.wikipedia.org/wiki/Taher_Elgamal) |
+| <img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/e060f372-03ca-4be6-bec9-08e05008602d" width=100px /> | Yao | [Wikipedia](https://en.wikipedia.org/wiki/Andrew_Yao) |
+
+
 
 
 because the iterative method required using a generic library to calculate the minimum in a secure way.
@@ -115,9 +118,7 @@ insert diagram here
 **Using Flask and Gunicorn servers on cloud platforms of Microsoft Azure. we represent parties involved in the secure computation.**
 
 ### User Interface 
-The users for the library that we developed are Software developers
-Our goal wasn't to build an application for everybody's use, but we decided to also provide a visual representation and an infrastructure to help future developers understand how to implement the use of our work inside their software. and also to provide an overview for people outside the Multi-party computation as a way to see our work runs in actions
-Our simple, user-friendly interface provides transparency into the protocol's progress and status, and execution providing a log output to see the full process.
+We built a library mainly for software developers, but included visual aids and infrastructure for easier understanding. It's designed to show anyone how our system works, especially in Multi-party computation. Our simple interface gives a clear view of the protocol's progress and even includes a log output to follow the entire process.
 
 Insert screens here
 
@@ -126,6 +127,13 @@ Insert screens here
 
 ## Development proccess
 
+At first the Development process was to read a lot and get deep into the article of Justin Brickell and Vitaly Shmatikov, which you can access [here](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/blob/main/shmat_asiacrypt05.pdf).
+and we met every week from the begining reading it, and also reading the article [A Proof of Security of Yao’s Protocol for Two-Party Computation]() by Yehuda Lindell Benny Pinkas and we had to learn a lot about the secure computation proofs and theory [Semi-Honest Adversaries](https://www.youtube.com/watch?time_continue=2&v=z3U-5mf6hGw&feature=emb_title) and this lecture as well.
+This is the first step is to get into the field so we can understand the problem more deeply.
+then we wrote the 
+
+
+Synchronization was one of our biggest obstacle for us as a team and for the threads in the program between the clients
 
   
 
@@ -209,13 +217,14 @@ return  <Component />
 ## Demo
 
   
-
-Insert gif or link to demo
-
+Insert gif *and* image for the video demo on youtube
 
   
 
 ## Deployment
+
+1. get a user on Microsoft Azure
+2. 
 
   
 
@@ -225,7 +234,7 @@ To deploy this project run
 
 ```bash
 
-npm run deploy
+gunicorn 
 
 ```
 
@@ -280,7 +289,7 @@ Install dependencies
 
 ```bash
 
-npm install
+pip install flask .....
 
 ```
 
@@ -301,13 +310,7 @@ npm run start
 
 
 
-# Synchronization
-
-Synchronization was one of our biggest obstacle
-
-## Manage file synchronization
-
-To manage it we used Kanban board
+# Documents
 
 
 
