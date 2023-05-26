@@ -1,5 +1,7 @@
 # Multi-Party Computation Cryptography - Final Project
 
+* add all the docs 
+* finish writing the development process api and demo and screenshots
 
 <img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d7f77a75-62cb-42c5-a6e1-dce23579a213" width=150px />
 
