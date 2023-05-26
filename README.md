@@ -85,6 +85,8 @@ The use of various generic libraries, such as YAO, and GMW, has proven to be les
 ### Selected approach
 **We have decided to implement the BitOr operation to achieve a union without relying on a generic library.**
 
+
+
 because the iterative method required using a generic library to calculate the minimum in a secure way.
 
 ## Pseudo Code Bit OR
