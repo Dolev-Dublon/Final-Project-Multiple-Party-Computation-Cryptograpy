@@ -1,6 +1,6 @@
 # Multi-Party Computation Cryptography - Final Project
 
-![multi party (1)](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d7f77a75-62cb-42c5-a6e1-dce23579a213)
+<img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d7f77a75-62cb-42c5-a6e1-dce23579a213" width=150px />
 
 |<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" /> |<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" /> |<img src="https://img.shields.io/badge/Canva-%2300C4CC.svg?&style=for-the-badge&logo=Canva&logoColor=white" />  |
 |-|-|-|
@@ -35,8 +35,7 @@
   * [Environment Variables](#environment-variables)
   * [Run Locally](#run-locally)
 - [Files & Project structure](#files--project-structure)
-- [Synchronization](#synchronization)
-  * [Manage file synchronization](#manage-file-synchronization)
+
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
