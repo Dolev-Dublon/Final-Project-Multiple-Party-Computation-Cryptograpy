@@ -314,7 +314,30 @@ npm run start
 
 
 
+
+
+
 # Documents
+
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/2654a3ec-b54b-453b-b145-715c0d433361)
+
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/2b57663d-4d07-4970-b9a8-461075e4aef6)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/a8e72665-b145-4e67-bcec-b88d4981f38f)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/0116c98b-50b0-46af-be92-e9f66279912b)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/dcbdc241-2316-4271-9546-da2dad9aba5d)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/335b4709-193f-4864-9ba1-81212f662828)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/af600236-eb82-45d4-8e11-603cb28979c1)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/552b3d33-a234-4f97-8ab8-3418add22251)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/20ca3c72-9c7e-47a5-b7e6-e7b288867e3f)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/91939058-7fda-48c8-be64-9b29695398c9)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/97d7ebbb-c5e0-40f6-80e7-4fbd70c6f7e7)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/0dffe14f-ba64-488f-a231-d85d394dbf5a)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/e4cf9373-1415-4eb5-9ca0-da23227695a3)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/f91500cd-673f-4039-a87e-f89c6666201d)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/c266f0f4-2981-44ea-81e8-1dd979774881)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/9dc89741-eb14-45b0-a60a-0177618f470e)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/4a9c9bec-558b-4dad-addb-df39eead53ff)
+
 
 
 
