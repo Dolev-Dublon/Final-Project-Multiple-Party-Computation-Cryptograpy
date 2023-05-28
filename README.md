@@ -1,6 +1,7 @@
 # Multi-Party Computation Cryptography - Final Project
 
 * finish writing the development process api and demo and screenshots adding tests
+* fix the SSD document https://docs.google.com/document/d/1oWhDiyfaaCHef23QWVzcB4Yah-8EvjGF3wODgSoSex4/edit#
 
 <img src="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/d7f77a75-62cb-42c5-a6e1-dce23579a213" width=150px />
 
