@@ -427,6 +427,10 @@ by Yehuda Lindell∗ Benny Pinkas June 26, 2006
 
 
 
-notes https://docs.google.com/document/d/1d35ExjbP7p1KzuKcKIswkkOI2wedrJmxIr1OTyWHQyg/edit# 
+##### notes
+- notes for final project https://docs.google.com/document/d/1d35ExjbP7p1KzuKcKIswkkOI2wedrJmxIr1OTyWHQyg/edit# 
+- vistion statements notes https://docs.google.com/document/d/1xL3wtaWKGzi0FGTweE9COot-9TdP_mHv4BdzA2mkEAg/edit?usp=sharing 
+- SSD https://docs.google.com/document/d/1oWhDiyfaaCHef23QWVzcB4Yah-8EvjGF3wODgSoSex4/edit?usp=sharing 
+- SRD https://docs.google.com/document/d/1w5ZWddqB6iOTN4Ku2wOdZLmmxYpQKhgURkkDfFiViZY/edit?usp=sharing
 
 
