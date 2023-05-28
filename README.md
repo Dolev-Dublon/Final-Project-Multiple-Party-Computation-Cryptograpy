@@ -318,6 +318,11 @@ npm run start
 
 # Documents
 
+## Vision Statement - MPC protocol implementation
+
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/3e22173b-be80-4746-b7b7-4db4799b849f)
+
+
 ## Privacy-Preserving Graph Algorithms in the Semi-honest Model 
 by Justin Brickell and Bitaly Shmatikov
 The University of Texas at Austin, Austin TX 78712, USA
