@@ -320,6 +320,8 @@ npm run start
 
 ## Vision Statement - MPC protocol implementation
 
+[Vision Statement](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/blob/main/Vision%20Statement.pdf)
+
 ![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/3e22173b-be80-4746-b7b7-4db4799b849f)
 
 
