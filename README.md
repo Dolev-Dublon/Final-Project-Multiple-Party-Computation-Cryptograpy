@@ -324,6 +324,14 @@ npm run start
 
 ![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/3e22173b-be80-4746-b7b7-4db4799b849f)
 
+## SRD Document
+
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/09dcdd56-e8ba-45f1-ba25-8544524c27b4)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/ef478b28-d05c-4edd-b201-ab6fc9e814ee)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/9f4f8271-74f1-41b4-a672-8fdd11575010)
+![image](https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy/assets/62290677/70a49f9d-c8ce-4830-b104-e681c543bde3)
+
+
 
 ## Privacy-Preserving Graph Algorithms in the Semi-honest Model 
 by Justin Brickell and Bitaly Shmatikov
