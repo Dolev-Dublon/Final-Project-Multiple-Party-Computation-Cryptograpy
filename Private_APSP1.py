@@ -85,3 +85,5 @@ def ASPS(graph):
     SO1_mapping = []  # we need to send this to the union
     for s in S01:
         SO1_mapping.append(mapping[s[0], s[1]])
+        
+    import union/
