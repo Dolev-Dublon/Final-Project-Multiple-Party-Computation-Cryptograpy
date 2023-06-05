@@ -5,8 +5,17 @@ Daniel.add_edge("Tel aviv","Jerusalem", weight = 10,label="red")
 Daniel.add_edge("a","s",weight=4,label="blue")
 Daniel.add_edge("Tel aviv","Petah tikva", weight = 5,label="red")
 
+
+
 S0=[]
 S1=[]
+
+S0.append(Daniel["a","s"])
+
+for v,u in S0:
+    print(v,u)
+    
+
 
 for edge in Daniel.edges:
     S0.append(edge)

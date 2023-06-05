@@ -51,12 +51,12 @@ def union(list, worldSize):
             tempP.append(p + "1")
         P = tempP
     int_list = [int(binary, 2) for binary in P]
-    return int_list, bob_socket
+    bob_socket.close()
+    return int_list
 
 
 if __name__ == "__main__":
     list = [1, 2, 5, 11]
-    result, bob_socket = union(list, 16)
+    result = union(list, 16)
     print(result)
     # TODO: make bob know that the union is done and he can close the socket
-    bob_socket.close()

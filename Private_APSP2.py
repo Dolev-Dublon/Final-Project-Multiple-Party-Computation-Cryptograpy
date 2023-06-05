@@ -30,8 +30,10 @@ def ASPS(graph):
     sorted_edges = sorted(public_graph.edges(data=True), key=lambda x: (x[0], x[1]))
     # Create the mapping dictionary
     mapping = {}
+    unmapping = {}
     for i, edge in enumerate(sorted_edges):
         mapping[edge[0], edge[1]] = i
+        unmapping[i]= [edge[0] , edge[1]]
 
     ## phase 3 : find the minimum edge weight for each graph
 
@@ -75,3 +77,13 @@ def ASPS(graph):
     for s in S01:
         SO1_mapping.append(mapping[s[0],s[1]])
 
+    from unionB import union as union_b
+    
+    print(union_b(SO1_mapping, public_graph.nodes.size()))
+    
+k = nx.Graph()
+k.add_edge(2,3)
+k.add_edge(1,9)
+for i in range(0,9):
+    k.add_node(i)
+ASPS(k)

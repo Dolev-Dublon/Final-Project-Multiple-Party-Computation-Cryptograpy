@@ -51,12 +51,13 @@ def union(list, worldSize):
             tempP.append(p + "1")
         P = tempP
     int_list = [int(binary, 2) for binary in P]
-    return int_list, alice_server_socket
+    alice_server_socket.close()
+    return int_list 
 
 
 if __name__ == "__main__":
     list = [0, 2]
-    result, alice_server_socket = union(list, 16)
+    result = union(list, 16)
     print(result)
     # TODO: close socket after use (in both unionA.py and unionB.py)
-    alice_server_socket.close()
+
