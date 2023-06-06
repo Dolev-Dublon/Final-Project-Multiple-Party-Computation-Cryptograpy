@@ -60,6 +60,8 @@ while True:
                 mimetype = 'image/jpg'
             elif(myfile.endswith(".css")):
                 mimetype = 'text/css'
+            elif(myfile.endswith(".js")):
+                mimetype = 'application/javascript'
             else:
                 mimetype = 'text/html'
     
