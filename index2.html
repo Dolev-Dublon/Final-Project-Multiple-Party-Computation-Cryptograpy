@@ -1,19 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <!-- basic -->
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="./index2.js" defer></script>
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>MPC - Final Project</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- fevicon -->
+    <link rel="icon" href="favicon.ico" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+    <!-- Tweaks for older IEs-->
+    <link
+      rel="stylesheet"
+      href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+      media="screen"
+    />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script
+    ><![endif]-->
   </head>
-  <body>
-    <label>
-      List
-      <input id="ListInput" type="text" name="List" />
-    </label>
-    <button id="SubmitList" disabled>Submit</button>
-    <div id="result"></div>
+  <!-- body -->
+  <body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+      <!-- header inner -->
+      <div class="header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+              <div class="full">
+                <div class="center-desk">
+                  <div class="logo">
+                    <a href="index.html"
+                      ><img src="images/MPC.png" style="width: 100px" alt="#"
+                    /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+              <nav class="navigation navbar navbar-expand-md navbar-dark">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarsExample04"
+                  aria-controls="navbarsExample04"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="#services">About Us </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                                 <a class="nav-link" href="#work"> Our  Work</a>
+                              </li> -->
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header inner -->
+    <!-- end header -->
+    <!-- banner -->
+    <section class="banner_main">
+      <div class="container-fluid">
+        <div class="row d_flex">
+          <div class="col-md-7">
+            <div class="text-bg">
+              <div class="padding_lert">
+                <i><img src="logo.png" alt="#" /></i>
+                <h1>Multi Party <br />Computation</h1>
+                <a href="#services">Read More</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 bah">
+            <!-- <div class="bann_img">
+                     <figure><img width="400px" src="images/bann_img.png" alt="#"/></figure>
+                  </div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end banner -->
+    <!-- service -->
+    <div id="services" class="service">
+      <div class="container-fluid">
+        <div class="row d_flex">
+          <div class="col-md-5">
+            <div class="service_img">
+              <figure><img src="images/lock.png" alt="#" /></figure>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="titlepage">
+              <h2>
+                Secure Set Union Algorithm - safe calculation of two MPC
+                participants
+              </h2>
+              <span>
+                <p>
+                  The algorithm adeptly merges clusters of numerical data for
+                  two users. In this process, each party unveils a portion of
+                  the necessary information for computation, ultimately
+                  achieving a united set of their respective data groups. With
+                  the El-Gamal encryption system, the participants encrypt their
+                  responses, aiding in the calculation of the final united
+                  group.
+                </p>
+                <p>
+                  So, what does secure computation look like in this context?
+                </p>
+                <ul>
+                  <li>
+                    When a participant has a number that falls within the union,
+                    they are unaware of whether that number is also present on
+                    the other party's side.
+                  </li>
+                  <li>
+                    For instance, consider two hospitals aiming to share their
+                    test results for an ongoing research study. They strive to
+                    disclose the least possible amount of patient-related
+                    medical information while still utilizing their files.
+                  </li>
+                </ul>
+                <p>
+                  By employing this secure union approach, the hospitals can
+                  perform a more comprehensive analysis of results without
+                  needing direct access to any patient files or understanding
+                  the specifics of the other hospital's patients.
+                </p>
+                <p>
+                  This safe computation method represents a marked improvement
+                  in efficiency for the 'union of groups' problem compared to
+                  traditional protocols. It provides a robust solution for the
+                  safe calculation of problems, revolutionizing the way we
+                  handle sensitive information.
+                </p>
+              </span>
+              <a class="read_more" href="Javascript:void(0)">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end service -->
+    <!-- solutions -->
+    <div class="solutions">
+      <div class="container">
+        <div class="row d_flex">
+          <div class="col-md-7">
+            <div class="titlepage">
+              <h2>
+                Finding the Shortest Path in a Graph - <br />
+                A Secure Calculation for Two Participants
+              </h2>
+              <span>
+                <p>
+                  This algorithm takes two identical graphs with differing edge
+                  weights. It securely computes the union of these graphs into a
+                  minimal graph, providing the answer to both parties.
+                  Crucially, through the secure computation, neither party gains
+                  any additional information about the other, beyond what is
+                  depicted in the unified graph.
+                </p>
+                <p>
+                  To execute the algorithm, we utilized secure computation for
+                  uniting groups and finding the minimal value within the group.
+                </p>
+                <ul>
+                  <li>
+                    For instance, consider two delivery companies contemplating
+                    a collaboration. Each company possesses a weighted graph
+                    illustrating the cost of line operation.
+                  </li>
+                  <li>
+                    While both companies wish to understand the benefits of a
+                    potential merger via the unified graph, they are keen on not
+                    revealing cost details of their lines that could advantage
+                    the competitor (if cheaper).
+                  </li>
+                </ul>
+                <p>
+                  Following a secure merger, the companies receive an optimized
+                  map detailing the best operating costs for each line in case
+                  of collaboration, all without revealing any additional
+                  information about individual line operation costs.
+                </p>
+                <p>
+                  This secure computation algorithm signifies an improvement in
+                  efficiency for the 'finding the shortest path' problem,
+                  compared to traditional protocols. It provides a solution for
+                  secure computation of problems, innovating the way we deal
+                  with data (Yao).
+                </p></span
+              >
+              <a class="read_more" href="Javascript:void(0)">Read More</a>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="solutions_img">
+              <figure><img src="images/solusan.png" alt="#" /></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end solutions -->
+    <!-- work -->
+    <div id="work" class="work">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>See The Algorithm In Action</h2>
+              <span
+                >Insert List of numbers to be calculated. The algorithm will
+                calculate the union of the two lists and return the result to
+                both parties.
+              </span>
+              <form style="display: flex; justify-content: center">
+                <button
+                  type="submit"
+                  class="btn btn-warning btn-lg btn-block"
+                  style="width: fit-content; padding-right: 50px"
+                >
+                  Click Me to send the message [1,2,3] to Alice
+                </button>
+              </form>
+              <div class="flexc">
+              <div  id="data-div" class="hidden floating-div"></div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+    <!-- end work -->
+    <!--  footer -->
+    <footer>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <!-- The code is open source and available on GitHub. The repository includes detailed documentation. -->
+            <div class="col-md-12">
+              <div class="cont">
+                <h1 style="color: white">
+                  The Code is and Open Source Project <br />View it on GitHub
+                </h1>
+                <span>
+                  <a
+                    href="https://github.com/Dolev-Dublon/Final-Project-Multiple-Party-Computation-Cryptograpy"
+                  >
+                    <img
+                      src="images/github.png"
+                      alt="Github logo"
+                      style="filter: invert(1)"
+                    />
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <p>Copyright 2023 All Right Reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- end footer -->
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="index2.js"></script>
   </body>
 </html>
