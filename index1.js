@@ -8,7 +8,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
   but.blur();
   // send a POST request to the server
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://localhost:8080", true);
+  xhr.open("POST", "http://157.230.103.249:8080", true);
   xhr.setRequestHeader("Content-Type", "application/json");
   xhr.send(JSON.stringify([1, 2, 5]));
   xhr.onload = () => {

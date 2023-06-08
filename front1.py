@@ -1,7 +1,7 @@
 import socket
 import json
 from unionA import union
-HOST,PORT = '127.0.0.1',8080
+HOST,PORT = '0.0.0.0',8080
  
 my_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 my_socket.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
