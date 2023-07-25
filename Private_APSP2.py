@@ -4,23 +4,22 @@ from unionB import union as union_b
 import itertools
 
 
-def ASPS(graph):
-
-    ## phase 0 : connection
-
+def init_connection_asps():
     # Create a socket object
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
     # Specify the server's IP address and port number
-    server_host = 'localhost'  # Replace with the server's IP address
-    server_port = 1255  # Replace with the server's port number
-
+    server_host = "localhost"  # Replace with the server's IP address
+    server_port = 1230  # Replace with the server's port number
     # Connect to the server
     client_socket.connect((server_host, server_port))
+    return client_socket
+
+
+def ASPS(graph):
+    client_socket = init_connection_asps()
 
     P_R_edges = []
     P_B_edges = []
-
     B1_edges = []
 
     ## phase 1 : set graph edges to blue
@@ -35,9 +34,8 @@ def ASPS(graph):
 
     node_combinations = itertools.combinations(public_graph.nodes, 2)
     for u, v in node_combinations:
-        public_graph.add_edge(u, v, weight=float('inf'), label='blue')
+        public_graph.add_edge(u, v, weight=float("inf"), label="blue")
         P_B_edges.append((u, v))
-
 
     # sorted edge for mapping and create mapping
     sorted_edges = sorted(public_graph.edges(data=True), key=lambda x: (x[0], x[1]))
@@ -49,9 +47,9 @@ def ASPS(graph):
         unmapping[i] = [edge[0], edge[1]]
 
     ## phase 3 : find the minimum edge weight for each graph
-    while (True):
-        m0 = float('inf')
-        m1 = float('inf')
+    while True:
+        m0 = float("inf")
+        m1 = float("inf")
         for edge in P_B_edges:
             if public_graph[edge[0]][edge[1]]["weight"] < m0:
                 m0 = public_graph[edge[0]][edge[1]]["weight"]
@@ -60,10 +58,9 @@ def ASPS(graph):
             if graph[edge[0]][edge[1]]["weight"] < m1:
                 m1 = graph[edge[0]][edge[1]]["weight"]
 
-
         ## phase 4 : compute the minimum wieght of edge between the 2 partys
 
-        tempMin = min(m0 , m1)
+        tempMin = min(m0, m1)
         client_socket.send(str(tempMin).encode())
         # Receive the response from the server
         finalMin = client_socket.recv(1024).decode()
@@ -133,8 +130,7 @@ def ASPS(graph):
             break
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     Daniel = nx.Graph()
     Daniel.add_edge("c1", "c2", weight=10)
     Daniel.add_edge("c1", "c3", weight=4)
