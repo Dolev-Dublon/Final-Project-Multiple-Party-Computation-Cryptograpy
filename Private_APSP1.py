@@ -1,6 +1,7 @@
 import socket
 import networkx as nx
 from unionA import union as union_a
+from hand_shake import hand_shake_APSP1
 import itertools
 
 gayindex = 0
@@ -72,16 +73,20 @@ def ASPS(graph):
         ## phase 4 : compute the minimum wieght of edge between the 2 partys
 
         tempMin = min(m0, m1)
+        if not hand_shake_APSP1(client_socket):
+            print("fail handshake")
+            break
+
         received_number = client_socket.recv(1024).decode()
         print("gay2", received_number)
-
+        print("print1")
         # print('iteration: ', i, ' ,Received number:', received_number)
         otherMin = int(received_number)
         # Process the number and send a response
         finalMin = min(tempMin, otherMin)
         response = str(finalMin)  # Example: Increment the number by 1
         client_socket.send(response.encode())
-
+        print("print2")
         ## phase 5 : compute S0,S1 just from the blue edges
         S0 = []
         S1 = []
@@ -95,7 +100,7 @@ def ASPS(graph):
                 B1_edges.remove(edge)  ### remove all the edges equale to minWeight
 
         S01 = set(S0 + S1)  # send this to private_union after mapping
-
+        print("print3")
         ## phase 6 : activate the private_union for S groups edges
 
         SO1_mapping = []  # we need to send this to the union
@@ -110,7 +115,7 @@ def ASPS(graph):
 
         for edge in S:
             public_graph[edge[0]][edge[1]]["weight"] = finalMin
-
+        print("print4")
         ## phase 7 :
         for edge in S:
             i = edge[0]
@@ -124,6 +129,7 @@ def ASPS(graph):
                 w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
                 if w < public_graph[i][k]["weight"]:
                     public_graph[i][k]["weight"] = w
+                print("print5")
         for red_edge in P_R_edges:
             i = red_edge[0]
             j = red_edge[1]
@@ -136,7 +142,7 @@ def ASPS(graph):
                 w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
                 if w < public_graph[i][k]["weight"]:
                     public_graph[i][k]["weight"] = w
-
+        print("print6")
         for edge in S:
             P_R_edges.append(public_graph[edge[0]][edge[1]])
             P_B_edges.remove(public_graph[edge[0]][edge[1]])
@@ -145,7 +151,7 @@ def ASPS(graph):
         if len(P_B_edges) == 0:
             print(public_graph)
             break
-
+        print("print7")
 
 if __name__ == "__main__":
     Daniel = nx.Graph()
