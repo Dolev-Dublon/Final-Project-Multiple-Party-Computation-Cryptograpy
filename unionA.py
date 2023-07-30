@@ -11,7 +11,7 @@ def orFunc(bob_socket, b):
     if hand_shake_sever_bob(bob_socket):
         alice_public_keys, alice = generate_alice_keys(b)
         bob_socket.send(alice_public_keys.encode())
-        bob_public_keys = bob_socket.recv(1024).decode()  # cb = (cB, q, g, gk)
+        bob_public_keys = bob_socket.recv(2048).decode()  # cb = (cB, q, g, gk)
         bob_public_keys_tuple = tuple(map(int, bob_public_keys.strip("()").split(",")))
         decrypted_result = alice.decrypt_message(bob_public_keys_tuple)
         result = 0
