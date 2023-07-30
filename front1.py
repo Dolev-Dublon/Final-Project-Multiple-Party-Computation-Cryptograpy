@@ -17,7 +17,7 @@ def process_data(data):
  
 while True:
     connection,address = my_socket.accept()
-    request = connection.recv(1024).decode('utf-8')
+    request = connection.recv(50240).decode('utf-8')
     string_list = request.split(' ')     # Split request from spaces
  
     method = string_list[0]

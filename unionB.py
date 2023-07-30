@@ -11,7 +11,7 @@ def orFunc(b, alice_server_socket):
     if hand_shake_client_bob(alice_server_socket):
         Bobbit = b
         bob = Bob(Bobbit)
-        response = alice_server_socket.recv(1024).decode()
+        response = alice_server_socket.recv(2048).decode()
         cA_q_g_gk = response.split(",")
         cA = (int(cA_q_g_gk[0][1:]), int(cA_q_g_gk[1][:-1]))
         q = int(cA_q_g_gk[2])
