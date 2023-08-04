@@ -36,6 +36,17 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script
     ><![endif]-->
+    <style type="text/css">
+      #mynetwork {
+        width: 600px;
+        height: 400px;
+        border: 1px solid lightgray;
+      }
+    </style>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"
+    ></script>
   </head>
   <!-- body -->
   <body class="main-layout">
@@ -260,8 +271,9 @@
                 </button>
               </form>
               <div class="flexc">
-              <div  id="data-div" class="hidden floating-div"></div>
-            </div>
+                <div id="data-div" class="hidden floating-div"></div>
+              </div>
+              <div id="mynetwork"></div>
             </div>
           </div>
         </div>

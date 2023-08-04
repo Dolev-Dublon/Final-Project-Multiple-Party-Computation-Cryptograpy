@@ -4,7 +4,6 @@ from unionA import union as union_a
 from hand_shake import hand_shake_APSP1
 import itertools
 
-gayindex = 0
 
 
 def init_connection_asps():
@@ -24,9 +23,6 @@ def init_connection_asps():
 
 
 def ASPS(graph):
-    global gayindex
-    gayindex = gayindex + 1
-    print("gay index: ", gayindex)
     client_socket = init_connection_asps()
 
     P_R_edges = []
@@ -78,7 +74,7 @@ def ASPS(graph):
             break
 
         received_number = client_socket.recv(1024).decode()
-        print("gay2", received_number)
+
         print("print1")
         # print('iteration: ', i, ' ,Received number:', received_number)
         otherMin = int(received_number)
