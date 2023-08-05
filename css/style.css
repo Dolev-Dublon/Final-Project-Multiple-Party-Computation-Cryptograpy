@@ -1,3 +1,61 @@
+.gradient-button {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.gradient-button:hover {
+  background: linear-gradient(90deg, #feb47b, #ff7e5f);
+}
+
+.button-3d {
+  background-color: #3498db;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 9px #2980b9;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.button-3d:active {
+  box-shadow: 0 5px #2980b9;
+  transform: translateY(4px);
+}
+
+
+.outline-button {
+  border: 2px solid #555;
+  background: transparent;
+  color: #555;
+  padding: 12px 24px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.outline-button:hover {
+  background: #555;
+  color: white;
+}
+
 /*--------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------*/
@@ -278,7 +336,7 @@ button {
 /** banner section **/
 
 .banner_main {
-  background: url(../images/banner.jpg);
+  /* background: url(../images/banner.jpg); */
   display: flex;
   align-content: center;
   align-items: center;
@@ -333,9 +391,29 @@ button {
   text-transform: uppercase;
 }
 
+.text-bg-bob a {
+  font-size: 17px;
+  background-color: #fff;
+  color: #0032d6 !important;
+  font-weight: 600;
+  padding: 22px 0px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  display: inline-block;
+  transition: ease-in all 0.5s;
+  text-transform: uppercase;
+}
+
 .text-bg a:hover {
   background-color: #ff283f;
   color: #fff;
+  transition: ease-in all 0.5s;
+}
+
+.text-bg-bob a:hover {
+  background-color: #0c02c9 !important;
+  color: #fff !important;
   transition: ease-in all 0.5s;
 }
 
@@ -628,6 +706,7 @@ button.sending:before {
   border: 1px solid #000;
   border-radius: 10px;
   width: 200px;
+  height: 140px;
   text-align: center;
 }
 
@@ -669,8 +748,7 @@ button.sending:before {
   }
 }
 
-
-.flexc{
+.flexc {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -10,7 +10,7 @@ document.querySelector("form").addEventListener("submit", function (e) {
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "http://localhost:8081", true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(JSON.stringify([1, 2, 3]));
+  xhr.send(JSON.stringify({ type: "union", content: [1, 2, 3] }));
   xhr.onload = () => {
     if (xhr.status === 200) {
       setTimeout(() => {}, 2000);

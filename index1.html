@@ -19,7 +19,7 @@
     <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- fevicon -->
-    <link rel="icon" href="favicon.ico" type="image/gif" />
+    <link rel="icon" href="images/favicon.ico" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
     <!-- Tweaks for older IEs-->
@@ -105,13 +105,16 @@
     <!-- end header inner -->
     <!-- end header -->
     <!-- banner -->
-    <section class="banner_main">
+    <section
+      class="banner_main"
+      style="background-image: url(../images/banner.jpg)"
+    >
       <div class="container-fluid">
         <div class="row d_flex">
           <div class="col-md-7">
             <div class="text-bg">
               <div class="padding_lert">
-                <i><img src="logo.png" alt="#" /></i>
+                <i><img src="images/logo.png" alt="#" /></i>
                 <h1>Multi Party <br />Computation</h1>
                 <a href="#services">Read More</a>
               </div>
@@ -181,7 +184,7 @@
                   handle sensitive information.
                 </p>
               </span>
-              <a class="read_more" href="Javascript:void(0)">Read More</a>
+              <!-- <a class="read_more" href="Javascript:void(0)">Read More</a> -->
             </div>
           </div>
         </div>
@@ -238,7 +241,7 @@
                   with data (Yao).
                 </p></span
               >
-              <a class="read_more" href="Javascript:void(0)">Read More</a>
+              <!-- <a class="read_more" href="Javascript:void(0)">Read More</a> -->
             </div>
           </div>
           <div class="col-md-5">
@@ -262,22 +265,45 @@
                 calculate the union of the two lists and return the result to
                 both parties.
               </span>
-              <form style="display: flex; justify-content: center">
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                "
+              >
                 <button
-                  type="submit"
+                  id="sendDefaultData"
                   class="btn btn-warning btn-lg btn-block"
                   style="width: fit-content; padding-right: 50px"
                 >
                   Click Me to send the message [1,2,5] to Bob
                 </button>
-              </form>
+                <br />
+                <div>
+                  <label for="message"
+                    >Message:
+                    <input
+                      type="text"
+                      id="union_message"
+                      name="message"
+                      value="9,3,4"
+                      style="display: block; margin: 0 auto; width: 55%"
+                    />
+                  </label>
+                  <button id="unionData" >Send Union Data</button>
+                </div>
+              </div>
               <div class="flexc">
                 <div id="data-div" class="hidden floating-div"></div>
               </div>
-              <div id="mynetwork"></div>
-              <button id="sendGraph">
-                Click Me To Start Graph Calculation
-              </button>
+              <div class="flexc">
+                <div id="mynetwork"></div>
+                <button class="outline-button" id="sendGraph">
+                  Click Me To Start Graph Calculation
+                </button>
+              </div>
             </div>
           </div>
         </div>

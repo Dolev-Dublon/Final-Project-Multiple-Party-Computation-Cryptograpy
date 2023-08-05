@@ -25,19 +25,20 @@ class Serv(BaseHTTPRequestHandler):
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length)
             json_data = json.loads(post_data)
-            if json_data['type'] == 'union':
-                result = union(json_data['content'], 16)
+            if json_data["type"] == "union":
+                result = union(json_data["content"], 16)
                 json_result = json.dumps(result)
                 # send it back
                 self.send_response(200)
                 self.send_header("Content-type", "application/json")
                 self.end_headers()
                 self.wfile.write(json_result.encode())
-            elif json_data['type'] == 'apsp':
+            elif json_data["type"] == "apsp":
                 print("json_data:", json_data)
                 graph = nx.Graph()
-                for edge in json_data['content']:
-                    graph.add_edge(edge['from'], edge['to'], weight=int(edge['label']))
+                for edge in json_data["content"]:
+                    graph.add_edge(int(edge["from"]), int(edge["to"]), weight=int(edge["label"]))
+                print("graph:", graph)
                 result = ASPS(graph)
                 print("result:", result)
                 json_result = json.dumps(result)
