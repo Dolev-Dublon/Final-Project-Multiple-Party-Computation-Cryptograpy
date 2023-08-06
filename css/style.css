@@ -37,7 +37,6 @@
   transform: translateY(4px);
 }
 
-
 .outline-button {
   border: 2px solid #555;
   background: transparent;
@@ -253,6 +252,21 @@ button {
   margin: 0;
   padding: 0;
   cursor: pointer;
+}
+
+#unionData {
+  cursor: pointer;
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#mynetwork {
+  margin-top: 50px;
 }
 
 .full {
@@ -553,6 +567,7 @@ button {
 .work {
   background: #fff;
   padding-top: 90px;
+  margin-right: 13dvw;
 }
 
 .our_work {
@@ -688,6 +703,21 @@ button.sending:before {
   transition-delay: 0.5s;
   transition-duration: 1s;
   opacity: 1;
+}
+
+#network-container {
+  margin-bottom: 3dvh;
+  /* button inside to have color black */
+  & button {
+    color: black;
+    background-color: #ffc007;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+  }
 }
 
 @keyframes rotate {

@@ -1,18 +1,49 @@
 const result = document.getElementById("data-div");
 
-document.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault();
+document
+  .querySelector("#sendDefaultData")
+  .addEventListener("click", function (e) {
+    var but = document.querySelector("#sendDefaultData");
+    but.classList.toggle("sending");
+    but.blur();
+    // send a POST request to the server
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8081", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({ type: "union", content: [1, 2, 3] }));
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        console.log(xhr.response);
+        setTimeout(() => {}, 2000);
+        result.innerHTML = xhr.response;
+        result.className = "visible floating-div";
+        but.classList.remove("sending");
+        but.blur();
+      }
+    };
+  });
 
-  var but = this.querySelector('[type="submit"]');
+document.querySelector("#unionData").addEventListener("click", function (e) {
+  var but = document.querySelector("#unionData");
   but.classList.toggle("sending");
   but.blur();
   // send a POST request to the server
+  let message = document.querySelector("#union_message").value;
+  console.log("message: ", message);
+  message = message
+    .split(",")
+    .map((x) => parseInt(x))
+    .sort((a, b) => a - b);
+  console.log(message);
+  console.log(typeof message);
+
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "http://localhost:8081", true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.send(JSON.stringify({ type: "union", content: [1, 2, 3] }));
+  xhr.send(JSON.stringify({ type: "union", content: message }));
   xhr.onload = () => {
     if (xhr.status === 200) {
+      console.log(xhr.response);
       setTimeout(() => {}, 2000);
       result.innerHTML = xhr.response;
       result.className = "visible floating-div";
@@ -56,3 +87,5 @@ var options = {
   },
 };
 var network = new vis.Network(container, data, options);
+
+

@@ -288,18 +288,24 @@
                       type="text"
                       id="union_message"
                       name="message"
-                      value="9,3,4"
+                      value="5,7,9"
                       style="display: block; margin: 0 auto; width: 55%"
                     />
                   </label>
-                  <button id="unionData" >Send Union Data</button>
+                  <button id="unionData">Send Union Data</button>
                 </div>
               </div>
               <div class="flexc">
                 <div id="data-div" class="hidden floating-div"></div>
               </div>
               <div class="flexc">
-                <div id="mynetwork"></div>
+                <div id="network-container">
+                  <div id="mynetwork"></div>
+                  <button onclick="addNode()">Add Node</button>
+                  <button onclick="addEdge()">Add Edge</button>
+                  <button onclick="removeNode()">Remove Node</button>
+                  <button onclick="removeEdge()">Remove Edge</button>
+                </div>
                 <button class="outline-button" id="sendGraph">
                   Click Me To Start Graph Calculation
                 </button>

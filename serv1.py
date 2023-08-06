@@ -37,18 +37,23 @@ class Serv(BaseHTTPRequestHandler):
                 print("json_data:", json_data)
                 graph = nx.Graph()
                 for edge in json_data["content"]:
-                    graph.add_edge(int(edge["from"]), int(edge["to"]), weight=int(edge["label"]))
-                print("graph:", graph)
-                result = ASPS(graph)
-                print("result:", result)
-                json_result = json.dumps(result)
-                # send it back
+                    graph.add_edge(int(edge["fromId"]), int(edge["toId"]), weight=int(edge["label"]))
                 self.send_response(200)
                 self.send_header("Content-type", "application/json")
                 self.end_headers()
-                self.wfile.write(json_result.encode())
-        except:
+                self.wfile.write(json.dumps({"status": "ok"}).encode())
+                # print("graph:", graph)
+                # result = ASPS(graph)
+                # print("result:", result)
+                # json_result = json.dumps(result)
+                # # send it back
+                # self.send_response(200)
+                # self.send_header("Content-type", "application/json")
+                # self.end_headers()
+                # self.wfile.write(json_result.encode())
+        except Exception as e:
             file_to_open = b"File Not Found"
+            print("error:", e)
             self.send_response(404)
 
 

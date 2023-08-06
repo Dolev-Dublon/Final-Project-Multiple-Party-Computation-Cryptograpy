@@ -104,7 +104,10 @@
     <!-- end header inner -->
     <!-- end header -->
     <!-- banner -->
-    <section class="banner_main" style="background-image: url(../images/banner_modified.jpg)" >
+    <section
+      class="banner_main"
+      style="background-image: url(../images/banner_modified.jpg)"
+    >
       <div class="container-fluid">
         <div class="row d_flex">
           <div class="col-md-7">
@@ -261,19 +264,51 @@
                 calculate the union of the two lists and return the result to
                 both parties.
               </span>
-              <form style="display: flex; justify-content: center">
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                "
+              >
                 <button
-                  type="submit"
+                  id="sendDefaultData"
                   class="btn btn-warning btn-lg btn-block"
                   style="width: fit-content; padding-right: 50px"
                 >
                   Click Me to send the message [1,2,3] to Alice
                 </button>
-              </form>
+                <br />
+                <div>
+                  <label for="message"
+                    >Message:
+                    <input
+                      type="text"
+                      id="union_message"
+                      name="message"
+                      value="3,5,9"
+                      style="display: block; margin: 0 auto; width: 55%"
+                    />
+                  </label>
+                  <button id="unionData">Send Union Data</button>
+                </div>
+              </div>
               <div class="flexc">
                 <div id="data-div" class="hidden floating-div"></div>
               </div>
-              <div id="mynetwork"></div>
+              <div class="flexc">
+                <div id="network-container">
+                  <div id="mynetwork"></div>
+                  <button onclick="addNode()">Add Node</button>
+                  <button onclick="addEdge()">Add Edge</button>
+                  <button onclick="removeNode()">Remove Node</button>
+                  <button onclick="removeEdge()">Remove Edge</button>
+                </div>
+                <button class="outline-button" id="sendGraph">
+                  Click Me To Start Graph Calculation
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -307,7 +342,7 @@
             </div>
           </div>
         </div>
-        <div class="copyright">
+        <div class="copyright" style="background: #21066e">
           <div class="container">
             <div class="row">
               <div class="col-md-12">
