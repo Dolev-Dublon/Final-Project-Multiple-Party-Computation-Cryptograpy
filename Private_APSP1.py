@@ -81,7 +81,6 @@ def ASPS(graph):
             for edge in B1_edges:
                 if graph[edge[0]][edge[1]]["weight"] == finalMin:
                     S1.append(edge)
-                    B1_edges.remove(edge)  ### remove all the edges equale to minWeight
 
             S01 = set(S0 + S1)  # send this to private_union after mapping
             ## phase 6 : activate the private_union for S groups edges
@@ -89,19 +88,25 @@ def ASPS(graph):
             SO1_mapping = []  # we need to send this to the union
             for s in S01:
                 SO1_mapping.append(mapping[s[0], s[1]])
+                if s in B1_edges:
+                    B1_edges.remove(s)   ### remove all the edges equale to minWeight
 
             print("S01:", S01)
             print("S01_mapping:", SO1_mapping)
 
             Union_edge = union_a(SO1_mapping, len(public_graph.nodes))
             print("Union_egdes", Union_edge)
+
             S = []
             for index_edge in Union_edge:
                 S.append(unmapping[index_edge])
 
+            print("Index edge", S)
+
             for edge in S:
                 public_graph[edge[0]][edge[1]]["weight"] = finalMin
-            print("print4")
+
+
             ## phase 7 :
             for edge in S:
                 i = edge[0]
@@ -132,16 +137,18 @@ def ASPS(graph):
                     w = min(w1, w2)
                     if w < public_graph[i][k]["weight"]:
                         public_graph[i][k]["weight"] = w
-            print("print6")
             for edge in S:
-                P_R_edges.append(public_graph[edge[0]][edge[1]])
-                P_B_edges.remove(public_graph[edge[0]][edge[1]])
-                public_graph[edge[0]][edge[1]] = "red"
+                #TODO - fix the inseretion of the edge to the public graph and the defining of edges in P_B_edges.
+                # P_R_edges.append(public_graph[edge[0]][edge[1]])
+                P_R_edges.append((edge[0], edge[1]))
+                if (edge[0], edge[1]) in P_B_edges:
+                    P_B_edges.remove((edge[0], edge[1]))
+
+                public_graph[edge[0]][edge[1]]["label"] = "red"
 
             if len(P_B_edges) == 0:
                 print(public_graph)
                 break
-            print("print7")
 
 if __name__ == "__main__":
     Daniel = nx.Graph()
