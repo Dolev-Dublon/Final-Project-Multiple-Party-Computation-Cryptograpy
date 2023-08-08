@@ -1,3 +1,4 @@
+import math
 import socket
 import networkx as nx
 
@@ -35,7 +36,7 @@ def ASPS(graph):
     # sorted edge for mapping and create mapping
 
     #TODO - ask daniel if this is OK -- why data = TRUE? ID WE DONT USE THE EDGE DATA?
-    sorted_edges = sorted(public_graph.edges(data=True), key=lambda x: (x[0], x[1]))
+    sorted_edges = sorted(public_graph.edges(), key=lambda x: (x[0], x[1]))
     # Create the mapping dictionary
     mapping = {}
     unmapping = {}
@@ -65,10 +66,18 @@ def ASPS(graph):
         if hand_shake_APSP1(client_socket):
             received_number = client_socket.recv(1024).decode()
 
-            # print('iteration: ', i, ' ,Received number:', received_number)
-            otherMin = int(received_number)
+            otherMin = float(received_number)
             # Process the number and send a response
             finalMin = min(tempMin, otherMin)
+            # response = str(finalMin)  # Example: Increment the number by 1
+            # client_socket.send(response.encode())
+
+            if finalMin == float("inf"):
+                response = str(finalMin)  # Example: Increment the number by 1
+                client_socket.send(response.encode())
+                return public_graph
+
+            finalMin = int(finalMin)
             response = str(finalMin)  # Example: Increment the number by 1
             client_socket.send(response.encode())
             ## phase 5 : compute S0,S1 just from the blue edges
@@ -94,7 +103,8 @@ def ASPS(graph):
             print("S01:", S01)
             print("S01_mapping:", SO1_mapping)
 
-            Union_edge = union_a(SO1_mapping, len(public_graph.nodes))
+            n = len(public_graph.nodes)
+            Union_edge = union_a(SO1_mapping, 2 ** math.ceil(math.log2(n)))
             print("Union_egdes", Union_edge)
 
             S = []
@@ -147,12 +157,16 @@ def ASPS(graph):
                 public_graph[edge[0]][edge[1]]["label"] = "red"
 
             if len(P_B_edges) == 0:
-                print(public_graph)
-                break
+                return public_graph
 
 if __name__ == "__main__":
     Daniel = nx.Graph()
     Daniel.add_edge("c1", "c2", weight=5)
-    Daniel.add_edge("c2", "c3", weight=4)
-    Daniel.add_edge("c3", "c4", weight=5)
-    ASPS(Daniel)
+    Daniel.add_edge("c1", "c3", weight=4)
+    # Daniel.add_edge("c3", "c4", weight=5)
+    Graph_res = ASPS(Daniel)
+
+    print("Nodes:", Graph_res.nodes())
+    print("Edges:", Graph_res.edges())
+    print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+    # print("result Union Graph:",Graph_res.nodes ,"\n" , "Edges: " ,Graph_res.edges, "\n", "Edges values: ", Graph_res.edges.values())

@@ -1,5 +1,9 @@
+import math
+
 import networkx as nx
 import socket
+
+import numpy as np
 
 from connections import init_connection_apsp2
 from hand_shake import hand_shake_APSP2
@@ -33,7 +37,7 @@ def ASPS(graph):
         P_B_edges.append((u, v))
 
     # sorted edge for mapping and create mapping
-    sorted_edges = sorted(public_graph.edges(data=True), key=lambda x: (x[0], x[1]))
+    sorted_edges = sorted(public_graph.edges(), key=lambda x: (x[0], x[1]))
     # Create the mapping dictionary
     mapping = {}
     unmapping = {}
@@ -62,7 +66,12 @@ def ASPS(graph):
         if hand_shake_APSP2(client_socket):
             client_socket.send(str(tempMin).encode())
             # Receive the response from the server
-            finalMin = int(client_socket.recv(1024).decode())
+            finalMin = client_socket.recv(1024).decode()
+
+            if finalMin == "inf":
+                return public_graph
+
+            finalMin = int(finalMin)
 
             ## phase 5 : compute S0,S1 just from the blue edges
             S0 = []
@@ -87,7 +96,8 @@ def ASPS(graph):
 
             print("S01:",S01)
             print("S01_mapping:", SO1_mapping)
-            Union_edge = union_b(SO1_mapping, len(public_graph.nodes))
+            n = len(public_graph.nodes)
+            Union_edge = union_b(SO1_mapping, 2 ** math.ceil(math.log2(n)))
             print("Union_egdes", Union_edge)
 
             S = []
@@ -136,13 +146,31 @@ def ASPS(graph):
                 public_graph[edge[0]][edge[1]]["label"] = "red"
 
             if len(P_B_edges) == 0:
-                print(public_graph)
-                break
+                return public_graph
 
 
 if __name__ == "__main__":
+    import matplotlib.pyplot as plt
     Daniel = nx.Graph()
     Daniel.add_edge("c1", "c2", weight=10)
     Daniel.add_edge("c1", "c3", weight=4)
-    Daniel.add_edge("c3", "c4", weight=10)
-    ASPS(Daniel)
+    # Daniel.add_edge("c3", "c4", weight=10)
+    Graph_res = ASPS(Daniel)
+
+    print("Nodes:", Graph_res.nodes())
+    print("Edges:", Graph_res.edges())
+    print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+    # Check if all nodes have finite positions
+    # pos = nx.spring_layout(Graph_res)
+    # for node, coordinates in pos.items():
+    #     if not all(map(np.isfinite, coordinates)):
+    #         print(f"Node {node} has non-finite coordinates: {coordinates}")
+    #
+    # # Draw the graph
+    # nx.draw(Graph_res, pos, with_labels=True, node_size=700, node_color="skyblue")
+    # nx.draw_networkx_edge_labels(Graph_res, pos,
+    #                              edge_labels={(u, v): Graph_res[u][v]['weight'] for u, v in Graph_res.edges()})
+
+    plt.show()
+    # print("result Union Graph:",Graph_res.nodes ,"\n" , "Edges: " ,Graph_res.edges, "\n", "Edges values: ", Graph_res.edges.values())
