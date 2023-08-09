@@ -8,7 +8,10 @@ from hand_shake import hand_shake_APSP1
 import itertools
 
 
-
+num_of_bits = 64
+""" 
+64 BITS can calculate graph with 1M nodes without problem in the union graph (that need big scale of numbers)
+"""
 
 def ASPS(graph):
     client_socket = init_connection_apsp1()
@@ -20,7 +23,7 @@ def ASPS(graph):
     ## phase 1 : set graph edges to blue
     for edge in iter(graph.edges):
         B1_edges.append(edge)
-        print("edge:", edge)
+        # print("edge:", edge)
         ##graph[u][v]["label"] = "blue"
 
     ## phase 2 : create the public graph
@@ -78,6 +81,7 @@ def ASPS(graph):
                 return public_graph
 
             finalMin = int(finalMin)
+
             response = str(finalMin)  # Example: Increment the number by 1
             client_socket.send(response.encode())
             ## phase 5 : compute S0,S1 just from the blue edges
@@ -100,18 +104,21 @@ def ASPS(graph):
                 if s in B1_edges:
                     B1_edges.remove(s)   ### remove all the edges equale to minWeight
 
-            print("S01:", S01)
-            print("S01_mapping:", SO1_mapping)
+            # print("S01:", S01)
+            # print("S01_mapping:", SO1_mapping)
 
             n = len(public_graph.nodes)
-            Union_edge = union_a(SO1_mapping, 2 ** math.ceil(math.log2(n)))
-            print("Union_egdes", Union_edge)
+
+            print("before union:" , SO1_mapping)
+            Union_edge = union_a(SO1_mapping, num_of_bits )
+            print("after union:", Union_edge)
+
 
             S = []
             for index_edge in Union_edge:
                 S.append(unmapping[index_edge])
 
-            print("Index edge", S)
+            # print("Index edge", S)
 
             for edge in S:
                 public_graph[edge[0]][edge[1]]["weight"] = finalMin
@@ -151,8 +158,10 @@ def ASPS(graph):
                 #TODO - fix the inseretion of the edge to the public graph and the defining of edges in P_B_edges.
                 # P_R_edges.append(public_graph[edge[0]][edge[1]])
                 P_R_edges.append((edge[0], edge[1]))
-                if (edge[0], edge[1]) in P_B_edges:
+                if tuple(edge) in P_B_edges:
                     P_B_edges.remove((edge[0], edge[1]))
+                if tuple(edge) in B1_edges:
+                    B1_edges.remove(tuple(edge))
 
                 public_graph[edge[0]][edge[1]]["label"] = "red"
 
@@ -162,8 +171,8 @@ def ASPS(graph):
 if __name__ == "__main__":
     Daniel = nx.Graph()
     Daniel.add_edge("c1", "c2", weight=5)
-    Daniel.add_edge("c1", "c3", weight=4)
-    # Daniel.add_edge("c3", "c4", weight=5)
+    Daniel.add_edge("c1", "c3", weight=10)
+    Daniel.add_edge("c3", "c4", weight=5)
     Graph_res = ASPS(Daniel)
 
     print("Nodes:", Graph_res.nodes())

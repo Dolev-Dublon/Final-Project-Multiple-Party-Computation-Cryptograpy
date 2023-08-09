@@ -26,7 +26,7 @@ class Serv(BaseHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             json_data = json.loads(post_data)
             if json_data["type"] == "union":
-                result = union(json_data["content"], 16)
+                result = union(json_data["content"], 32)  ##16
                 json_result = json.dumps(result)
                 # send it back
                 self.send_response(200)

@@ -12,8 +12,10 @@ import itertools
 
 
 
-
-
+num_of_bits = 64
+""" 
+64 BITS can calculate graph with 1M nodes without problem in the union graph (that need big scale of numbers)
+"""
 def ASPS(graph):
     client_socket = init_connection_apsp2()
 
@@ -91,20 +93,21 @@ def ASPS(graph):
             SO1_mapping = []  # we need to send this to the union
             for s in S01:
                 SO1_mapping.append(mapping[s[0], s[1]])
-                if s in B1_edges:
-                    B1_edges.remove(s)   ### remove all the edges equale to minWeight
+   ### remove all the edges equale to minWeight
 
-            print("S01:",S01)
-            print("S01_mapping:", SO1_mapping)
+            # print("S01:",S01)
+            # print("S01_mapping:", SO1_mapping)
             n = len(public_graph.nodes)
-            Union_edge = union_b(SO1_mapping, 2 ** math.ceil(math.log2(n)))
-            print("Union_egdes", Union_edge)
+            print("before union:" , SO1_mapping)
+            Union_edge = union_b(SO1_mapping, num_of_bits)
+            print("after union:", Union_edge)
+            # print("Union_egdes", Union_edge)
 
             S = []
             for index_edge in Union_edge:
                 S.append(unmapping[index_edge])
 
-            print("Index edge", S)
+            # print("Index edge", S)
 
             for edge in S:
                 public_graph[edge[0]][edge[1]]["weight"] = finalMin
@@ -141,8 +144,11 @@ def ASPS(graph):
 
             for edge in S:
                 P_R_edges.append(( edge[0], edge[1] ))
-                if (edge[0], edge[1]) in P_B_edges:
-                    P_B_edges.remove((edge[0], edge[1]))
+                if tuple(edge) in P_B_edges:
+                    P_B_edges.remove(tuple(edge))
+                if tuple(edge) in B1_edges:
+                    B1_edges.remove(tuple(edge))
+
                 public_graph[edge[0]][edge[1]]["label"] = "red"
 
             if len(P_B_edges) == 0:
@@ -154,7 +160,7 @@ if __name__ == "__main__":
     Daniel = nx.Graph()
     Daniel.add_edge("c1", "c2", weight=10)
     Daniel.add_edge("c1", "c3", weight=4)
-    # Daniel.add_edge("c3", "c4", weight=10)
+    Daniel.add_edge("c3", "c4", weight=10)
     Graph_res = ASPS(Daniel)
 
     print("Nodes:", Graph_res.nodes())
@@ -172,5 +178,5 @@ if __name__ == "__main__":
     # nx.draw_networkx_edge_labels(Graph_res, pos,
     #                              edge_labels={(u, v): Graph_res[u][v]['weight'] for u, v in Graph_res.edges()})
 
-    plt.show()
+    # plt.show()
     # print("result Union Graph:",Graph_res.nodes ,"\n" , "Edges: " ,Graph_res.edges, "\n", "Edges values: ", Graph_res.edges.values())
