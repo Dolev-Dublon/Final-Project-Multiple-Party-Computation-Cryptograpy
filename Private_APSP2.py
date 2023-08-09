@@ -157,26 +157,95 @@ def ASPS(graph):
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
-    Daniel = nx.Graph()
-    Daniel.add_edge("c1", "c2", weight=10)
-    Daniel.add_edge("c1", "c3", weight=4)
-    Daniel.add_edge("c3", "c4", weight=10)
-    Graph_res = ASPS(Daniel)
+    """ G1 """
+    graph = nx.Graph()
+    graph.add_edge("c1", "c2", weight=10)
+    graph.add_edge("c1", "c3", weight=4)
+    graph.add_edge("c3", "c4", weight=10)
+    # Daniel.add_edge("c5", "c4", weight=1)
+    Graph_res = ASPS(graph)
 
     print("Nodes:", Graph_res.nodes())
     print("Edges:", Graph_res.edges())
     print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
 
-    # Check if all nodes have finite positions
-    # pos = nx.spring_layout(Graph_res)
-    # for node, coordinates in pos.items():
-    #     if not all(map(np.isfinite, coordinates)):
-    #         print(f"Node {node} has non-finite coordinates: {coordinates}")
+    # import matplotlib.pyplot as plt
     #
-    # # Draw the graph
-    # nx.draw(Graph_res, pos, with_labels=True, node_size=700, node_color="skyblue")
-    # nx.draw_networkx_edge_labels(Graph_res, pos,
-    #                              edge_labels={(u, v): Graph_res[u][v]['weight'] for u, v in Graph_res.edges()})
-
+    # pos = nx.spring_layout(graph)
+    # labels = nx.get_edge_attributes(graph, 'weight')
+    # nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='pink', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
+    # plt.title("Mystica Realm Magical Portals")
     # plt.show()
-    # print("result Union Graph:",Graph_res.nodes ,"\n" , "Edges: " ,Graph_res.edges, "\n", "Edges values: ", Graph_res.edges.values())
+
+
+    """ G2 """
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=8)
+    # graph.add_edge("a", "c", weight=1)
+    # graph.add_edge("b", "d", weight=9)
+    # graph.add_edge("c", "d", weight=3)
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+    # """ G3 """
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=8)
+    # graph.add_edge("a", "c", weight=7)
+    # graph.add_edge("b", "c", weight=1)
+    # graph.add_edge("c", "d", weight=3)
+    # graph.add_edge("d", "e", weight=4)
+    # graph.add_edge("e", "f", weight=7)
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+    """ G4 """
+    #
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=8)
+    # graph.add_edge("b", "c", weight=6)
+    # graph.add_edge("c", "a", weight=7)
+    # graph.add_edge("b", "d", weight=9)
+    #
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+
+    """ G5 """
+
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=10)
+    # graph.add_edge("a", "c", weight=7)
+    # graph.add_edge("b", "d", weight=5)
+    # graph.add_edge("d", "c", weight=6)
+    # graph.add_edge("d", "e", weight=3)
+    # graph.add_edge("e", "a", weight=8)
+    # graph.add_edge("e", "f", weight=2)
+    # graph.add_edge("f", "b", weight=9)
+    #
+    #
+    #
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+    #
+    # import matplotlib.pyplot as plt
+    #
+    # # Plot
+    # pos = nx.spring_layout(graph)
+    # labels = nx.get_edge_attributes(graph, 'weight')
+    # nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='skyblue', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
+    # plt.title("Eldoria Realm Magical Portals")
+    # plt.show()

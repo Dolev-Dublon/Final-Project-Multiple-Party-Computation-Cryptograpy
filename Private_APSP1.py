@@ -169,13 +169,111 @@ def ASPS(graph):
                 return public_graph
 
 if __name__ == "__main__":
-    Daniel = nx.Graph()
-    Daniel.add_edge("c1", "c2", weight=5)
-    Daniel.add_edge("c1", "c3", weight=10)
-    Daniel.add_edge("c3", "c4", weight=5)
-    Graph_res = ASPS(Daniel)
+    """ G1 """
+    graph = nx.Graph()
+    graph.add_edge("c1", "c2", weight=5)
+    graph.add_edge("c1", "c3", weight=10)
+    graph.add_edge("c3", "c4", weight=5)
+    # graph.add_edge("c1", "c5", weight=13)
+    Graph_res = ASPS(graph)
 
     print("Nodes:", Graph_res.nodes())
     print("Edges:", Graph_res.edges())
     print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+    # import matplotlib.pyplot as plt
+    #
+    # # Plotting the original graph
+    # plt.figure(figsize=(12, 6))
+    # plt.subplot(1, 2, 1)
+    # pos = nx.spring_layout(graph)
+    # labels = nx.get_edge_attributes(graph, 'weight')
+    # nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='pink', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
+    # plt.title("Mystica Realm Magical Portals")
+    #
+    # # Plotting Graph_res
+    # plt.subplot(1, 2, 2)
+    # pos_res = nx.spring_layout(Graph_res)
+    # labels_res = {k: v for k, v in nx.get_edge_attributes(Graph_res, 'weight').items() if v != float('inf')}
+    # nx.draw(Graph_res, pos_res, with_labels=True, node_size=2000, node_color='lightgreen', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(Graph_res, pos_res, edge_labels=labels_res, font_size=15)
+    # plt.title("Resulting Graph after ASPS Algorithm")
+    #
+    # plt.tight_layout()
+    # plt.show()
+
     # print("result Union Graph:",Graph_res.nodes ,"\n" , "Edges: " ,Graph_res.edges, "\n", "Edges values: ", Graph_res.edges.values())
+
+    """ G2 """
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=3)
+    # graph.add_edge("a", "c", weight=7)
+    # graph.add_edge("b", "d", weight=2)
+    # graph.add_edge("c", "d", weight=6)
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+
+    # """ G3 """
+    #
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=3)
+    # graph.add_edge("a", "c", weight=7)
+    # graph.add_edge("b", "d", weight=2)
+    # graph.add_edge("c", "d", weight=6)
+    # graph.add_edge("d", "e", weight=5)
+    # graph.add_edge("e", "f", weight=1)
+    #
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+
+    """ G4 """
+    #
+    # graph = nx.Graph()
+    # graph.add_edge("a", "b", weight=3)
+    # graph.add_edge("b", "c", weight=4)
+    # graph.add_edge("c", "a", weight=5)
+    # graph.add_edge("b", "d", weight=2)
+    #
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+
+    """ G5 """
+    #
+    # graph = nx.Graph()
+    # graph.add_edge("f", "e", weight=12)
+    # graph.add_edge("f", "d", weight=5)
+    # graph.add_edge("d", "c", weight=8)
+    # graph.add_edge("c", "b", weight=3)
+    # graph.add_edge("b", "a", weight=6)
+    # graph.add_edge("a", "e", weight=4)
+    # graph.add_edge("a", "f", weight=10)
+    # graph.add_edge("b", "d", weight=7)
+    #
+    #
+    #
+    # Graph_res = ASPS(graph)
+    #
+    # print("Nodes:", Graph_res.nodes())
+    # print("Edges:", Graph_res.edges())
+    # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+    #
+    # import matplotlib.pyplot as plt
+    #
+    # pos = nx.spring_layout(graph)
+    # labels = nx.get_edge_attributes(graph, 'weight')
+    # nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='pink', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
+    # plt.title("Mystica Realm Magical Portals")
+    # plt.show()
