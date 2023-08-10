@@ -153,32 +153,50 @@ def ASPS(graph_):
 
             ## phase 7 :
             for edge in S:
-                i = edge[0]
-                j = edge[1]
-                for red_edge in P_R_edges:
-                    k = red_edge[1]
-                    if red_edge[0] != j:
-                        continue
-                    if public_graph[i][k]["label"] != "blue":
-                        continue
-                    w1 = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
-                    w2 = public_graph[k][j]["weight"] + public_graph[j][i]["weight"]
-                    w = min(w1,w2)
-                    if w < public_graph[i][k]["weight"]:
-                        public_graph[i][k]["weight"] = w
-                    print("print5")
+                i = 0
+                j = 0
+                for t in range(2):
+                    if t==0:
+                        i = edge[0]
+                        j = edge[1]
+                    else:
+                        j = edge[0]
+                        i = edge[1]
+                    for red_edge in P_R_edges:
+                        k = 0
+                        if red_edge[0] == j:
+                            k = red_edge[1]
+                        elif red_edge[1] == j:
+                            k = red_edge[0]
+                        else:
+                            continue
+                        if public_graph[i][k]["label"] != "blue":
+                            continue
+                        w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
+                        if w < public_graph[i][k]["weight"]:
+                            public_graph[i][k]["weight"] = w
+
             for red_edge in P_R_edges:
-                i = red_edge[0]
-                j = red_edge[1]
+                i = 0
+                j = 0
+                for t in range(2):
+                    if t == 0:
+                        i = red_edge[0]
+                        j = red_edge[1]
+                    else:
+                        j = red_edge[0]
+                        i = red_edge[1]
                 for edge in S:
-                    k = edge[1]
-                    if edge[0] != j:
+                    k = 0
+                    if edge[0] == j:
+                        k = edge[1]
+                    elif edge[1] == j:
+                        k = edge[0]
+                    else:
                         continue
                     if public_graph[i][k]["label"] != "blue":
                         continue
-                    w1 = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
-                    w2 = public_graph[k][j]["weight"] + public_graph[j][i]["weight"]
-                    w = min(w1, w2)
+                    w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
                     if w < public_graph[i][k]["weight"]:
                         public_graph[i][k]["weight"] = w
             for edge in S:
@@ -265,10 +283,10 @@ if __name__ == "__main__":
     """ G4 """
     #
     # graph = nx.Graph()
-    # graph.add_edge("a", "b", weight=3)
-    # graph.add_edge("b", "c", weight=4)
-    # graph.add_edge("c", "a", weight=5)
-    # graph.add_edge("b", "d", weight=2)
+    # graph.add_edge("a", "b", weight=1)
+    # graph.add_edge("c", "b", weight=2)
+    # graph.add_edge("c", "a", weight=7)
+    # graph.add_edge("b", "d", weight=12)
     #
     # Graph_res = ASPS(graph)
     #
@@ -288,7 +306,7 @@ if __name__ == "__main__":
     graph.add_edge("d", "c", weight=6)
     graph.add_edge("d", "e", weight=3)
     graph.add_edge("e", "a", weight=8)
-    graph.add_edge("e", "f", weight=2)
+    graph.add_edge("e", "f", weight=42)
     graph.add_edge("f", "b", weight=9)
 
 
@@ -300,9 +318,9 @@ if __name__ == "__main__":
 
     import matplotlib.pyplot as plt
 
-    pos = nx.spring_layout(graph)
-    labels = nx.get_edge_attributes(graph, 'weight')
-    nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='pink', font_size=15, width=3)
-    nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
-    plt.title("Mystica Realm Magical Portals")
-    plt.show()
+    # pos = nx.spring_layout(graph)
+    # labels = nx.get_edge_attributes(graph, 'weight')
+    # nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='pink', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
+    # plt.title("Mystica Realm Magical Portals")
+    # plt.show()
