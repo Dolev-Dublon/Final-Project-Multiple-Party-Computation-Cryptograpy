@@ -140,36 +140,54 @@ def ASPS(graph_):
             for edge in S:
                 public_graph[edge[0]][edge[1]]["weight"] = finalMin
 
-                ## phase 7 :
+            ## phase 7 :
             for edge in S:
-                i = edge[0]
-                j = edge[1]
-                for red_edge in P_R_edges:
-                    k = red_edge[1]
-                    if red_edge[0] != j:
-                        continue
-                    if public_graph[i][k]["label"] != "blue":
-                        continue
-                    w1 = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
-                    w2 = public_graph[k][j]["weight"] + public_graph[j][i]["weight"]
-                    w = min(w1, w2)
-                    if w < public_graph[i][k]["weight"]:
-                        public_graph[i][k]["weight"] = w
-            for red_edge in P_R_edges:
-                i = red_edge[0]
-                j = red_edge[1]
-                for edge in S:
-                    k = edge[1]
-                    if edge[0] != j:
-                        continue
-                    if public_graph[i][k]["label"] != "blue":
-                        continue
-                    w1 = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
-                    w2 = public_graph[k][j]["weight"] + public_graph[j][i]["weight"]
-                    w = min(w1, w2)
-                    if w < public_graph[i][k]["weight"]:
-                        public_graph[i][k]["weight"] = w
+                i=0
+                j=0
+                for t in range(2):
+                    if t == 0:
+                        i = edge[0]
+                        j = edge[1]
+                    else:
+                        j = edge[0]
+                        i = edge[1]
+                    for red_edge in P_R_edges:
+                        k = 0
+                        if red_edge[0] == j:
+                            k = red_edge[1]
+                        elif red_edge[1] == j:
+                            k = red_edge[0]
+                        else:
+                            continue
+                        if public_graph[i][k]["label"] != "blue":
+                            continue
+                        w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
+                        if w < public_graph[i][k]["weight"]:
+                            public_graph[i][k]["weight"] = w
 
+            for red_edge in P_R_edges:
+                i = 0
+                j = 0
+                for t in range(2):
+                    if t == 0:
+                        i = red_edge[0]
+                        j = red_edge[1]
+                    else:
+                        j = red_edge[0]
+                        i = red_edge[1]
+                for edge in S:
+                    k = 0
+                    if edge[0] == j:
+                        k = edge[1]
+                    elif edge[1] == j:
+                        k = edge[0]
+                    else:
+                        continue
+                    if public_graph[i][k]["label"] != "blue":
+                        continue
+                    w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
+                    if w < public_graph[i][k]["weight"]:
+                        public_graph[i][k]["weight"] = w
             for edge in S:
                 P_R_edges.append(( edge[0], edge[1] ))
                 if tuple(edge) in P_B_edges:
@@ -209,8 +227,8 @@ if __name__ == "__main__":
 
     """ G2 """
     # graph = nx.Graph()
-    # graph.add_edge("a", "b", weight=8)
-    # graph.add_edge("a", "c", weight=1)
+    # graph.add_edge("a", "b", weight=2)
+    # graph.add_edge("a", "d", weight=8)
     # graph.add_edge("b", "d", weight=9)
     # graph.add_edge("c", "d", weight=3)
     # Graph_res = ASPS(graph)
@@ -254,7 +272,7 @@ if __name__ == "__main__":
 
 
     graph.add_edge("f", "e", weight=12)
-    graph.add_edge("f", "d", weight=5)
+    graph.add_edge("d", "f", weight=5)
     graph.add_edge("d", "c", weight=8)
     graph.add_edge("c", "b", weight=3)
     graph.add_edge("b", "a", weight=6)
@@ -272,9 +290,9 @@ if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
     # Plot
-    pos = nx.spring_layout(graph)
-    labels = nx.get_edge_attributes(graph, 'weight')
-    nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='skyblue', font_size=15, width=3)
-    nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
-    plt.title("Eldoria Realm Magical Portals")
-    plt.show()
+    # pos = nx.spring_layout(graph)
+    # labels = nx.get_edge_attributes(graph, 'weight')
+    # nx.draw(graph, pos, with_labels=True, node_size=2000, node_color='skyblue', font_size=15, width=3)
+    # nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels, font_size=15)
+    # plt.title("Eldoria Realm Magical Portals")
+    # plt.show()
