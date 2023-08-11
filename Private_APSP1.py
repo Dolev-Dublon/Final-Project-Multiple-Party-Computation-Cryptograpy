@@ -4,7 +4,7 @@ import networkx as nx
 
 from connections import init_connection_apsp1 , Init_connection
 from unionA import union as union_a
-from hand_shake import hand_shake_APSP1
+from hand_shake import hand_shake_APSP1 , hand_shake_sever_bob
 import itertools
 
 
@@ -40,8 +40,8 @@ def sort_graph_edges(graph):
 
 
 def ASPS(graph_):
-    client_socket = init_connection_apsp1()
     bob_socket = Init_connection()
+    client_socket = bob_socket
     print("connected to bob")
     graph = sort_graph_edges(graph_)
     P_R_edges = []
@@ -94,7 +94,7 @@ def ASPS(graph_):
         #     print("fail handshake1")
         #     break
         #TODO - add else to the handshake checking;
-        if hand_shake_APSP1(client_socket):
+        if hand_shake_sever_bob(client_socket):
             received_number = client_socket.recv(1024).decode()
 
             otherMin = float(received_number)

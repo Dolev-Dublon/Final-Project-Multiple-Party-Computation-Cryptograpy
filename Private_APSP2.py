@@ -6,7 +6,7 @@ import socket
 import numpy as np
 
 from connections import init_connection_apsp2 , Init_client_connection
-from hand_shake import hand_shake_APSP2
+from hand_shake import hand_shake_APSP2 , hand_shake_client_bob
 from unionB import union as union_b
 import itertools
 
@@ -43,9 +43,8 @@ def sort_graph_edges(graph):
 
 
 def ASPS(graph_):
-
-    client_socket = init_connection_apsp2()
     alice_server_socket = Init_client_connection()
+    client_socket = alice_server_socket
     graph = sort_graph_edges(graph_)
     P_R_edges = []
     P_B_edges = []
@@ -93,7 +92,7 @@ def ASPS(graph_):
         # if not hand_shake_APSP2(client_socket):
         #     print("fail handshake")
         #     break
-        if hand_shake_APSP2(client_socket):
+        if hand_shake_client_bob(client_socket):
             client_socket.send(str(tempMin).encode())
             # Receive the response from the server
             finalMin = client_socket.recv(1024).decode()
