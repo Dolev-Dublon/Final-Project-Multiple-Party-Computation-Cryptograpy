@@ -254,19 +254,38 @@ button {
   cursor: pointer;
 }
 
-#unionData {
-  cursor: pointer;
-  background-color: #ffc107;
-  color: #000;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 500;
-}
+
 
 #mynetwork {
+  margin-top: 65px;
+  height: 400px;
+  width: 500px;
+}
+
+#mynetworkresult {
+  border: 1px solid #ddd;
+  height: 400px;
+  width: 500px;
   margin-top: 50px;
+}
+
+#result {
+  margin-top: 50px;
+  color: #2c3e50; /* Dark blue shade */
+  font-family: "Arial", sans-serif;
+  display: inline-block;
+  padding: 20px 40px;
+  margin-bottom: 10px;
+  background-color: #f2f2f2; /* Light gray background */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  border-radius: 5px; /* Rounded corners */
+  transition: all 0.3s ease; /* Smooth transition for any changes */
+}
+
+#result:hover {
+  background-color: #e6e6e6; /* Slightly darker background on hover */
+  transform: translateY(-2px); /* Small upward motion on hover */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Slightly more pronounced shadow on hover */
 }
 
 .full {
@@ -434,7 +453,6 @@ button {
 .titlepage {
   text-align: center;
   padding-bottom: 60px;
-  margin-left: 20%;
 }
 
 .titlepage h2 {
@@ -567,7 +585,6 @@ button {
 .work {
   background: #fff;
   padding-top: 90px;
-  margin-right: 13dvw;
 }
 
 .our_work {
@@ -708,16 +725,7 @@ button.sending:before {
 #network-container {
   margin-bottom: 3dvh;
   /* button inside to have color black */
-  & button {
-    color: black;
-    background-color: #ffc007;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-  }
+
 }
 
 @keyframes rotate {
@@ -783,4 +791,19 @@ button.sending:before {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.styled-union {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* You can replace this with any other preferred font */
+  font-size: 3rem; /* Increases the font size */
+  font-weight: bold; /* Makes the text bolder */
+  letter-spacing: 2px; /* Increases spacing between letters for a touch of elegance */
+  text-transform: uppercase; /* Makes the text uppercase for added emphasis */
+  color: #333; /* A neutral dark color for the text */
+  background-color: #f5f5f5; /* A subtle background color */
+  padding: 20px; /* Adds space around the text for separation */
+  border-radius: 5px; /* Rounds the corners of the background */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for depth */
+  text-align: center; /* Centers the text */
+  transition: transform 0.3s; /* Smooth transformation when hovered */
 }

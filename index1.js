@@ -51,6 +51,8 @@ document.querySelector("#unionData").addEventListener("click", function (e) {
   };
 });
 
+const networkResultContainer = document.getElementById("mynetworkresult");
+
 const sendGraphBtn = document
   .querySelector("#sendGraph")
   .addEventListener("click", function (e) {
@@ -76,6 +78,38 @@ const sendGraphBtn = document
         console.log(xhr.response);
         sendGraphBtn.classList.remove("sending");
         sendGraphBtn.blur();
+
+        const responseData = JSON.parse(xhr.response);
+        let responseEdges = responseData.map((edge) => ({
+          from: edge.fromId,
+          to: edge.toId,
+          label: String(edge.label),
+        }));
+        let responseNodes = [];
+        responseData.forEach((edge) => {
+          responseNodes.push({ id: edge.fromId, label: "Node " + edge.fromId });
+          responseNodes.push({ id: edge.toId, label: "Node " + edge.toId });
+        });
+
+        // Remove duplicate nodes
+        responseNodes = responseNodes.filter(
+          (node, index, self) =>
+            index === self.findIndex((n) => n.id === node.id)
+        );
+
+        const responseNetworkData = {
+          nodes: new vis.DataSet(responseNodes),
+          edges: new vis.DataSet(responseEdges),
+        };
+        const options = {
+          nodes: {
+            color: {
+              background: "#ff80ff",
+              border: "#ffccff",
+            },
+          },
+        };
+        new vis.Network(networkResultContainer, responseNetworkData, options);
       }
     };
   });
@@ -86,8 +120,8 @@ var nodesArray = [
   { id: 3, label: "Node 3" },
 ];
 var edgesArray = [
-  { from: 1, to: 2, label: "5", arrows: "to" }, // weight 5
-  { from: 1, to: 3, label: "3", arrows: "to" }, // weight 3
+  { from: 1, to: 2, label: "5" }, // weight 5
+  { from: 1, to: 3, label: "3" }, // weight 3
 ];
 var nodes = new vis.DataSet(nodesArray);
 var edges = new vis.DataSet(edgesArray);
@@ -97,7 +131,14 @@ var data = {
   nodes: nodes,
   edges: edges,
 };
-var options = {};
+var options = {
+  nodes: {
+    color: {
+      background: "#ffcccc",
+      border: "#ff0000",
+    },
+  },
+};
 var network = new vis.Network(container, data, options);
 
 var lastClickedNodes = [];
@@ -135,7 +176,6 @@ function addEdge() {
         from: fromNode,
         to: toNode,
         label: weight,
-        arrows: "to",
       };
       edgesArray.push(newEdge);
       edges.add(newEdge);

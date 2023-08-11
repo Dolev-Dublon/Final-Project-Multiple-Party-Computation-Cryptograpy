@@ -51,6 +51,8 @@ document.querySelector("#unionData").addEventListener("click", function (e) {
   };
 });
 
+const networkResultContainer = document.getElementById("mynetworkresult");
+
 const sendGraphBtn = document
   .querySelector("#sendGraph")
   .addEventListener("click", function (e) {
@@ -76,11 +78,40 @@ const sendGraphBtn = document
         console.log(xhr.response);
         sendGraphBtn.classList.remove("sending");
         sendGraphBtn.blur();
+        const responseData = JSON.parse(xhr.response);
+        let responseEdges = responseData.map((edge) => ({
+          from: edge.fromId,
+          to: edge.toId,
+          label: String(edge.label),
+        }));
+        let responseNodes = [];
+        responseData.forEach((edge) => {
+          responseNodes.push({ id: edge.fromId, label: "Node " + edge.fromId });
+          responseNodes.push({ id: edge.toId, label: "Node " + edge.toId });
+        });
+
+        // Remove duplicate nodes
+        responseNodes = responseNodes.filter(
+          (node, index, self) =>
+            index === self.findIndex((n) => n.id === node.id)
+        );
+
+        const responseNetworkData = {
+          nodes: new vis.DataSet(responseNodes),
+          edges: new vis.DataSet(responseEdges),
+        };
+        const options = {
+          nodes: {
+            color: {
+              background: "#ff80ff",
+              border: "#ffccff",
+            },
+          },
+        };
+        new vis.Network(networkResultContainer, responseNetworkData, options);
       }
     };
   });
-
-
 
 // create an array with nodes
 var nodesArray = [
@@ -91,9 +122,9 @@ var nodesArray = [
 
 // create an array with edges
 var edgesArray = [
-  { from: 1, to: 2, label: "5", arrows: "to" },
-  { from: 1, to: 3, label: "3", arrows: "to" },
-  { from: 2, to: 3, label: "1", arrows: "to" },
+  { from: 1, to: 2, label: "5" },
+  { from: 1, to: 3, label: "3" },
+  { from: 2, to: 3, label: "1" },
 ];
 
 var nodes = new vis.DataSet(nodesArray);
@@ -143,7 +174,6 @@ function addEdge() {
         from: fromNode,
         to: toNode,
         label: weight,
-        arrows: "to",
       };
       edgesArray.push(newEdge);
       edges.add(newEdge);
