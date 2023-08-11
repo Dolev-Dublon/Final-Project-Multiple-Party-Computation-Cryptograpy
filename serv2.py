@@ -31,7 +31,6 @@ class Serv(BaseHTTPRequestHandler):
             json_data = json.loads(post_data)
             if json_data["type"] == "union":
                 result = union(json_data["content"], 32, alice_server_socket) ## 16
-                alice_server_socket.close()
                 json_result = json.dumps(result)
                 # send it back
                 self.send_response(200)
