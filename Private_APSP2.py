@@ -1,6 +1,5 @@
 import networkx as nx
 from connections import Init_client_connection
-from hand_shake import hand_shake_client_bob
 from unionB import unionB
 import itertools
 
@@ -78,11 +77,9 @@ def ASPS2(graph_):
         ## phase 4 : compute the minimum wieght of edge between the 2 partys
 
         tempMin = min(m0, m1)
-        # if not hand_shake_APSP2(client_socket):
-        #     print("fail handshake")
-        #     break
-
+ 
         client_socket.send(str(tempMin).encode())
+        
         # Receive the response from the server
         finalMin = client_socket.recv(1024).decode()
 

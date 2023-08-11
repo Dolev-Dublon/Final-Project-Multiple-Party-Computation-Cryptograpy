@@ -2,9 +2,8 @@ import math
 import socket
 import networkx as nx
 
-from connections import Init_connection, accept_client
+from connections import  accept_client
 from unionA import unionA
-from hand_shake import hand_shake_sever_bob
 import itertools
 
 
@@ -40,9 +39,9 @@ def sort_graph_edges(graph):
     return sorted_graph
 
 
-def ASPS1(graph_):
-    server_socket_dont_touch = Init_connection()
-    client_socket = accept_client(server_socket_dont_touch)
+def ASPS1(graph_ , server_socket_dont_touch):
+    # server_socket_dont_touch = Init_connection()
+    client_socket = accept_client(server_socket=server_socket_dont_touch)
 
     graph = sort_graph_edges(graph_)
     P_R_edges = []
@@ -214,7 +213,7 @@ def ASPS1(graph_):
 
         if len(P_B_edges) == 0:
             client_socket.close()
-            server_socket_dont_touch.close()
+            # server_socket_dont_touch.close()
             return public_graph
 
 
@@ -300,6 +299,7 @@ if __name__ == "__main__":
     """ G5 """
     #
     graph = nx.Graph()
+    
 
     graph.add_edge("a", "b", weight=10)
     graph.add_edge("a", "c", weight=7)
