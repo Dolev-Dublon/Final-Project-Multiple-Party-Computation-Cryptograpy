@@ -2,7 +2,12 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 from unionB import union
 from Private_APSP2 import ASPS
+from connections import Init_client_connection
 import networkx as nx
+
+global alice_server_socket
+alice_server_socket = Init_client_connection()
+
 class Serv(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/":
@@ -20,11 +25,13 @@ class Serv(BaseHTTPRequestHandler):
     def do_POST(self):
         try:
             # get the data from the client
+            global alice_server_socket
             content_length = int(self.headers["Content-Length"])
             post_data = self.rfile.read(content_length)
             json_data = json.loads(post_data)
             if json_data["type"] == "union":
-                result = union(json_data["content"], 32) ## 16
+                result = union(json_data["content"], 32, alice_server_socket) ## 16
+                alice_server_socket.close()
                 json_result = json.dumps(result)
                 # send it back
                 self.send_response(200)

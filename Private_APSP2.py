@@ -5,7 +5,7 @@ import socket
 
 import numpy as np
 
-from connections import init_connection_apsp2
+from connections import init_connection_apsp2 , Init_client_connection
 from hand_shake import hand_shake_APSP2
 from unionB import union as union_b
 import itertools
@@ -45,7 +45,7 @@ def sort_graph_edges(graph):
 def ASPS(graph_):
 
     client_socket = init_connection_apsp2()
-
+    alice_server_socket = Init_client_connection()
     graph = sort_graph_edges(graph_)
     P_R_edges = []
     P_B_edges = []
@@ -127,7 +127,7 @@ def ASPS(graph_):
             # print("S01_mapping:", SO1_mapping)
             n = len(public_graph.nodes)
             print("before union:" , SO1_mapping)
-            Union_edge = union_b(SO1_mapping, num_of_bits)
+            Union_edge = union_b(SO1_mapping, num_of_bits, alice_server_socket)
             print("after union:", Union_edge)
             # print("Union_egdes", Union_edge)
 
@@ -198,6 +198,8 @@ def ASPS(graph_):
                 public_graph[edge[0]][edge[1]]["label"] = "red"
 
             if len(P_B_edges) == 0:
+                alice_server_socket.close()
+                client_socket.close()
                 return public_graph
 
 

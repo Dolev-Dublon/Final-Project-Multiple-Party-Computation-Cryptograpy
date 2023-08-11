@@ -23,8 +23,8 @@ def orFunc(bob_socket, b):
         return int(result)
 
 
-def union(list, worldSize):
-    bob_socket = Init_connection()
+def union(list, worldSize, bob_socket):
+
     P = ["0", "1"]  # live bits
     bitsList = []
     for i in range(len(list)):
@@ -51,7 +51,6 @@ def union(list, worldSize):
             tempP.append(p + "1")
         P = tempP
     int_list = [int(binary, 2) for binary in P]
-    bob_socket.close()
     return int_list
 
 

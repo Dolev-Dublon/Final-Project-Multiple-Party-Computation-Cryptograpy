@@ -2,7 +2,7 @@ import math
 import socket
 import networkx as nx
 
-from connections import init_connection_apsp1
+from connections import init_connection_apsp1 , Init_connection
 from unionA import union as union_a
 from hand_shake import hand_shake_APSP1
 import itertools
@@ -41,7 +41,8 @@ def sort_graph_edges(graph):
 
 def ASPS(graph_):
     client_socket = init_connection_apsp1()
-
+    bob_socket = Init_connection()
+    print("connected to bob")
     graph = sort_graph_edges(graph_)
     P_R_edges = []
     P_B_edges = []
@@ -137,7 +138,7 @@ def ASPS(graph_):
             n = len(public_graph.nodes)
 
             print("before union:" , SO1_mapping)
-            Union_edge = union_a(SO1_mapping, num_of_bits )
+            Union_edge = union_a(SO1_mapping, num_of_bits, bob_socket )
             print("after union:", Union_edge)
 
 
@@ -145,12 +146,12 @@ def ASPS(graph_):
             for index_edge in Union_edge:
                 S.append(unmapping[index_edge])
 
-            # print("Index edge", S)
+            print("Index edge", S)
 
             for edge in S:
                 public_graph[edge[0]][edge[1]]["weight"] = finalMin
 
-
+            print("phase 7")
             ## phase 7 :
             for edge in S:
                 i = 0
@@ -175,7 +176,7 @@ def ASPS(graph_):
                         w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
                         if w < public_graph[i][k]["weight"]:
                             public_graph[i][k]["weight"] = w
-
+            print("first loop done")
             for red_edge in P_R_edges:
                 i = 0
                 j = 0
@@ -199,6 +200,7 @@ def ASPS(graph_):
                     w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
                     if w < public_graph[i][k]["weight"]:
                         public_graph[i][k]["weight"] = w
+            print("second loop done")
             for edge in S:
                 #TODO - fix the inseretion of the edge to the public graph and the defining of edges in P_B_edges.
                 # P_R_edges.append(public_graph[edge[0]][edge[1]])
@@ -209,8 +211,11 @@ def ASPS(graph_):
                     B1_edges.remove(tuple(edge))
 
                 public_graph[edge[0]][edge[1]]["label"] = "red"
-
+            print("third loop done")
             if len(P_B_edges) == 0:
+                print("P_B_edges is empty")
+                bob_socket.close()
+                client_socket.close()
                 return public_graph
 
 if __name__ == "__main__":

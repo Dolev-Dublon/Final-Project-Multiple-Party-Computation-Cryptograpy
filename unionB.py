@@ -23,8 +23,8 @@ def orFunc(b, alice_server_socket):
         return int(result)
 
 
-def union(list, worldSize):
-    alice_server_socket = Init_client_connection()
+def union(list, worldSize, alice_server_socket):
+
     P = ["0", "1"]  # live bits
     bitsList = []
     for i in range(len(list)):
@@ -51,7 +51,6 @@ def union(list, worldSize):
             tempP.append(p + "1")
         P = tempP
     int_list = [int(binary, 2) for binary in P]
-    alice_server_socket.close()
     return int_list 
 
 
