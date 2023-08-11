@@ -1,6 +1,6 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
-from unionB import union
+from unionB import unionB
 from Private_APSP2 import ASPS
 import networkx as nx
 class Serv(BaseHTTPRequestHandler):
@@ -24,7 +24,7 @@ class Serv(BaseHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             json_data = json.loads(post_data)
             if json_data["type"] == "union":
-                result = union(json_data["content"], 32) ## 16
+                result = unionB(json_data["content"], 32) ## 16
                 json_result = json.dumps(result)
                 # send it back
                 self.send_response(200)
@@ -48,6 +48,6 @@ class Serv(BaseHTTPRequestHandler):
             file_to_open = b"File Not Found"
             self.send_response(404)
 
-
+print("http://localhost:8081")
 httpd = HTTPServer(("localhost", 8081), Serv)
 httpd.serve_forever()

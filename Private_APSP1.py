@@ -2,9 +2,9 @@ import math
 import socket
 import networkx as nx
 
-from connections import init_connection_apsp1
-from unionA import union as union_a
-from hand_shake import hand_shake_APSP1
+from connections import Init_connection, accept_client
+from unionA import unionA
+from hand_shake import hand_shake_sever_bob
 import itertools
 
 
@@ -19,10 +19,12 @@ def sort_graph_edges(graph):
     Sort the edges and nodes of a graph based on lexicographical order and return a new graph.
     """
     # Extract edges from the graph along with their weights
-    edges = [(u, v, graph[u][v]['weight']) for u, v in graph.edges()]
+    edges = [(u, v, graph[u][v]["weight"]) for u, v in graph.edges()]
 
     # Sort edges based on the smallest node first, then the larger node
-    sorted_edges = sorted(edges, key=lambda edge: (min(edge[0], edge[1]), max(edge[0], edge[1])))
+    sorted_edges = sorted(
+        edges, key=lambda edge: (min(edge[0], edge[1]), max(edge[0], edge[1]))
+    )
 
     # Create a new graph and add the sorted nodes first
     sorted_graph = nx.Graph()
@@ -38,9 +40,9 @@ def sort_graph_edges(graph):
     return sorted_graph
 
 
-
-def ASPS(graph_):
-    client_socket = init_connection_apsp1()
+def ASPS1(graph_):
+    server_socket_dont_touch = Init_connection()
+    client_socket = accept_client(server_socket_dont_touch)
 
     graph = sort_graph_edges(graph_)
     P_R_edges = []
@@ -65,7 +67,7 @@ def ASPS(graph_):
 
     # sorted edge for mapping and create mapping
 
-    #TODO - ask daniel if this is OK -- why data = TRUE? ID WE DONT USE THE EDGE DATA?
+    # TODO - ask daniel if this is OK -- why data = TRUE? ID WE DONT USE THE EDGE DATA?
     sorted_edges = sorted(public_graph.edges(), key=lambda x: (x[0], x[1]))
     # Create the mapping dictionary
     mapping = {}
@@ -92,106 +94,82 @@ def ASPS(graph_):
         # if not hand_shake_APSP1(client_socket):
         #     print("fail handshake1")
         #     break
-        #TODO - add else to the handshake checking;
-        if hand_shake_APSP1(client_socket):
-            received_number = client_socket.recv(1024).decode()
+        # TODO - add else to the handshake checking;
 
-            otherMin = float(received_number)
-            # Process the number and send a response
-            finalMin = min(tempMin, otherMin)
-            # response = str(finalMin)  # Example: Increment the number by 1
-            # client_socket.send(response.encode())
+        received_number = client_socket.recv(1024).decode()
 
-            if finalMin == float("inf"):
-                response = str(finalMin)  # Example: Increment the number by 1
-                client_socket.send(response.encode())
-                return public_graph
+        otherMin = float(received_number)
+        # Process the number and send a response
+        finalMin = min(tempMin, otherMin)
+        # response = str(finalMin)  # Example: Increment the number by 1
+        # client_socket.send(response.encode())
 
-            finalMin = int(finalMin)
-
+        if finalMin == float("inf"):
             response = str(finalMin)  # Example: Increment the number by 1
             client_socket.send(response.encode())
-            ## phase 5 : compute S0,S1 just from the blue edges
-            S0 = []
-            S1 = []
-            for edge in P_B_edges:
-                if public_graph[edge[0]][edge[1]]["weight"] == finalMin:
-                    S0.append(edge)
-#TODO we find one problem here in the if condition..change it to graph instead of public_graph
-            for edge in B1_edges:
-                if graph[edge[0]][edge[1]]["weight"] == finalMin:
-                    S1.append(edge)
+            return public_graph
 
-            S01 = set(S0 + S1)  # send this to private_union after mapping
-            ## phase 6 : activate the private_union for S groups edges
+        finalMin = int(finalMin)
 
-            SO1_mapping = []  # we need to send this to the union
-            for s in S01:
-                SO1_mapping.append(mapping[s[0], s[1]])
-                if s in B1_edges:
-                    B1_edges.remove(s)   ### remove all the edges equale to minWeight
+        response = str(finalMin)  # Example: Increment the number by 1
+        client_socket.send(response.encode())
+        ## phase 5 : compute S0,S1 just from the blue edges
+        S0 = []
+        S1 = []
+        for edge in P_B_edges:
+            if public_graph[edge[0]][edge[1]]["weight"] == finalMin:
+                S0.append(edge)
+        # TODO we find one problem here in the if condition..change it to graph instead of public_graph
+        for edge in B1_edges:
+            if graph[edge[0]][edge[1]]["weight"] == finalMin:
+                S1.append(edge)
 
-            # print("S01:", S01)
-            # print("S01_mapping:", SO1_mapping)
+        S01 = set(S0 + S1)  # send this to private_union after mapping
+        ## phase 6 : activate the private_union for S groups edges
 
-            n = len(public_graph.nodes)
+        SO1_mapping = []  # we need to send this to the union
+        for s in S01:
+            SO1_mapping.append(mapping[s[0], s[1]])
+            if s in B1_edges:
+                B1_edges.remove(s)  ### remove all the edges equale to minWeight
 
-            print("before union:" , SO1_mapping)
-            Union_edge = union_a(SO1_mapping, num_of_bits )
-            print("after union:", Union_edge)
+        # print("S01:", S01)
+        # print("S01_mapping:", SO1_mapping)
 
+        n = len(public_graph.nodes)
 
-            S = []
-            for index_edge in Union_edge:
-                S.append(unmapping[index_edge])
+        print("before union:", SO1_mapping)
+        Union_edge = unionA(
+            SO1_mapping, num_of_bits, server_socket=server_socket_dont_touch
+        )
+        print("after union:", Union_edge)
 
-            # print("Index edge", S)
+        S = []
+        for index_edge in Union_edge:
+            S.append(unmapping[index_edge])
 
-            for edge in S:
-                public_graph[edge[0]][edge[1]]["weight"] = finalMin
+        # print("Index edge", S)
 
+        for edge in S:
+            public_graph[edge[0]][edge[1]]["weight"] = finalMin
 
-            ## phase 7 :
-            for edge in S:
-                i = 0
-                j = 0
-                for t in range(2):
-                    if t==0:
-                        i = edge[0]
-                        j = edge[1]
-                    else:
-                        j = edge[0]
-                        i = edge[1]
-                    for red_edge in P_R_edges:
-                        k = 0
-                        if red_edge[0] == j:
-                            k = red_edge[1]
-                        elif red_edge[1] == j:
-                            k = red_edge[0]
-                        else:
-                            continue
-                        if public_graph[i][k]["label"] != "blue":
-                            continue
-                        w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
-                        if w < public_graph[i][k]["weight"]:
-                            public_graph[i][k]["weight"] = w
-
-            for red_edge in P_R_edges:
-                i = 0
-                j = 0
-                for t in range(2):
-                    if t == 0:
-                        i = red_edge[0]
-                        j = red_edge[1]
-                    else:
-                        j = red_edge[0]
-                        i = red_edge[1]
-                for edge in S:
+        ## phase 7 :
+        for edge in S:
+            i = 0
+            j = 0
+            for t in range(2):
+                if t == 0:
+                    i = edge[0]
+                    j = edge[1]
+                else:
+                    j = edge[0]
+                    i = edge[1]
+                for red_edge in P_R_edges:
                     k = 0
-                    if edge[0] == j:
-                        k = edge[1]
-                    elif edge[1] == j:
-                        k = edge[0]
+                    if red_edge[0] == j:
+                        k = red_edge[1]
+                    elif red_edge[1] == j:
+                        k = red_edge[0]
                     else:
                         continue
                     if public_graph[i][k]["label"] != "blue":
@@ -199,28 +177,55 @@ def ASPS(graph_):
                     w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
                     if w < public_graph[i][k]["weight"]:
                         public_graph[i][k]["weight"] = w
+
+        for red_edge in P_R_edges:
+            i = 0
+            j = 0
+            for t in range(2):
+                if t == 0:
+                    i = red_edge[0]
+                    j = red_edge[1]
+                else:
+                    j = red_edge[0]
+                    i = red_edge[1]
             for edge in S:
-                #TODO - fix the inseretion of the edge to the public graph and the defining of edges in P_B_edges.
-                # P_R_edges.append(public_graph[edge[0]][edge[1]])
-                P_R_edges.append((edge[0], edge[1]))
-                if tuple(edge) in P_B_edges:
-                    P_B_edges.remove((edge[0], edge[1]))
-                if tuple(edge) in B1_edges:
-                    B1_edges.remove(tuple(edge))
+                k = 0
+                if edge[0] == j:
+                    k = edge[1]
+                elif edge[1] == j:
+                    k = edge[0]
+                else:
+                    continue
+                if public_graph[i][k]["label"] != "blue":
+                    continue
+                w = public_graph[i][j]["weight"] + public_graph[j][k]["weight"]
+                if w < public_graph[i][k]["weight"]:
+                    public_graph[i][k]["weight"] = w
+        for edge in S:
+            # TODO - fix the inseretion of the edge to the public graph and the defining of edges in P_B_edges.
+            # P_R_edges.append(public_graph[edge[0]][edge[1]])
+            P_R_edges.append((edge[0], edge[1]))
+            if tuple(edge) in P_B_edges:
+                P_B_edges.remove((edge[0], edge[1]))
+            if tuple(edge) in B1_edges:
+                B1_edges.remove(tuple(edge))
 
-                public_graph[edge[0]][edge[1]]["label"] = "red"
+            public_graph[edge[0]][edge[1]]["label"] = "red"
 
-            if len(P_B_edges) == 0:
-                return public_graph
+        if len(P_B_edges) == 0:
+            client_socket.close()
+            server_socket_dont_touch.close()
+            return public_graph
+
 
 if __name__ == "__main__":
-    """ G1 """
+    """G1"""
     # graph = nx.Graph()
     # graph.add_edge("c1", "c2", weight=5)
     # graph.add_edge("c1", "c3", weight=10)
     # graph.add_edge("c3", "c4", weight=5)
     # # graph.add_edge("c1", "c5", weight=13)
-    # Graph_res = ASPS(graph)
+    # Graph_res = ASPS1(graph)
     #
     # print("Nodes:", Graph_res.nodes())
     # print("Edges:", Graph_res.edges())
@@ -243,7 +248,7 @@ if __name__ == "__main__":
     # labels_res = {k: v for k, v in nx.get_edge_attributes(Graph_res, 'weight').items() if v != float('inf')}
     # nx.draw(Graph_res, pos_res, with_labels=True, node_size=2000, node_color='lightgreen', font_size=15, width=3)
     # nx.draw_networkx_edge_labels(Graph_res, pos_res, edge_labels=labels_res, font_size=15)
-    # plt.title("Resulting Graph after ASPS Algorithm")
+    # plt.title("Resulting Graph after ASPS1 Algorithm")
     #
     # plt.tight_layout()
     # plt.show()
@@ -256,12 +261,11 @@ if __name__ == "__main__":
     # graph.add_edge("a", "c", weight=7)
     # graph.add_edge("b", "d", weight=2)
     # graph.add_edge("c", "d", weight=6)
-    # Graph_res = ASPS(graph)
+    # Graph_res = ASPS1(graph)
     #
     # print("Nodes:", Graph_res.nodes())
     # print("Edges:", Graph_res.edges())
     # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
-
 
     # """ G3 """
     #
@@ -273,12 +277,11 @@ if __name__ == "__main__":
     # graph.add_edge("d", "e", weight=5)
     # graph.add_edge("e", "f", weight=1)
     #
-    # Graph_res = ASPS(graph)
+    # Graph_res = ASPS1(graph)
     #
     # print("Nodes:", Graph_res.nodes())
     # print("Edges:", Graph_res.edges())
     # print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
-
 
     """ G4 """
     #
@@ -288,7 +291,7 @@ if __name__ == "__main__":
     # graph.add_edge("c", "a", weight=7)
     # graph.add_edge("b", "d", weight=12)
     #
-    # Graph_res = ASPS(graph)
+    # Graph_res = ASPS1(graph)
     #
     # print("Nodes:", Graph_res.nodes())
     # print("Edges:", Graph_res.edges())
@@ -297,8 +300,6 @@ if __name__ == "__main__":
     """ G5 """
     #
     graph = nx.Graph()
-
-
 
     graph.add_edge("a", "b", weight=10)
     graph.add_edge("a", "c", weight=7)
@@ -309,12 +310,14 @@ if __name__ == "__main__":
     graph.add_edge("e", "f", weight=42)
     graph.add_edge("f", "b", weight=9)
 
-
-    Graph_res = ASPS(graph)
+    Graph_res = ASPS1(graph)
 
     print("Nodes:", Graph_res.nodes())
     print("Edges:", Graph_res.edges())
-    print("Edge Weights:", [(u, v, Graph_res[u][v]['weight']) for u, v in Graph_res.edges()])
+    print(
+        "Edge Weights:",
+        [(u, v, Graph_res[u][v]["weight"]) for u, v in Graph_res.edges()],
+    )
 
     import matplotlib.pyplot as plt
 

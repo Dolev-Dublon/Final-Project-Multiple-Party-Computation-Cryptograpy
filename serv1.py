@@ -1,8 +1,9 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
-from unionA import union
+from unionA import unionA
 from Private_APSP1 import ASPS
 import networkx as nx
+from connections import Init_connection
 
 
 class Serv(BaseHTTPRequestHandler):
@@ -26,7 +27,10 @@ class Serv(BaseHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             json_data = json.loads(post_data)
             if json_data["type"] == "union":
-                result = union(json_data["content"], 32)  ##16
+                server_socket = Init_connection()
+                result = unionA(
+                    json_data["content"], 32, server_socket=server_socket
+                )  ##16
                 json_result = json.dumps(result)
                 # send it back
                 self.send_response(200)
@@ -37,7 +41,11 @@ class Serv(BaseHTTPRequestHandler):
                 print("json_data:", json_data)
                 graph = nx.Graph()
                 for edge in json_data["content"]:
-                    graph.add_edge(int(edge["fromId"]), int(edge["toId"]), weight=int(edge["label"]))
+                    graph.add_edge(
+                        int(edge["fromId"]),
+                        int(edge["toId"]),
+                        weight=int(edge["label"]),
+                    )
                 self.send_response(200)
                 self.send_header("Content-type", "application/json")
                 self.end_headers()
@@ -56,6 +64,6 @@ class Serv(BaseHTTPRequestHandler):
             print("error:", e)
             self.send_response(404)
 
-
+print("http://localhost:8080")
 httpd = HTTPServer(("localhost", 8080), Serv)
 httpd.serve_forever()
