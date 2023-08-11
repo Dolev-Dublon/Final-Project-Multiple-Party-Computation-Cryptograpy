@@ -1,7 +1,7 @@
 # unionA.py
 import math
 import numpy as np
-from connections import Init_connection
+from connections import Init_connection, accept_client
 from hand_shake import hand_shake_sever_bob
 from Alicefunctions import generate_alice_keys
 
@@ -23,8 +23,9 @@ def orFunc(bob_socket, b):
         return int(result)
 
 
-def union(list, worldSize):
-    bob_socket = Init_connection()
+def unionA(list, worldSize, server_socket):
+    # server_socket = Init_connection()
+    bob_socket = accept_client(server_socket)
     P = ["0", "1"]  # live bits
     bitsList = []
     for i in range(len(list)):
@@ -52,11 +53,13 @@ def union(list, worldSize):
         P = tempP
     int_list = [int(binary, 2) for binary in P]
     bob_socket.close()
+    # server_socket.close()
     return int_list
 
 
 if __name__ == "__main__":
     list = [1, 2, 5, 11]
-    result = union(list, 16)
+    server_socket = Init_connection()
+    result = unionA(list, 16, server_socket=server_socket)
     print(result)
     # TODO: make bob know that the union is done and he can close the socket

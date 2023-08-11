@@ -23,7 +23,7 @@ def orFunc(b, alice_server_socket):
         return int(result)
 
 
-def union(list, worldSize):
+def unionB(list, worldSize):
     alice_server_socket = Init_client_connection()
     P = ["0", "1"]  # live bits
     bitsList = []
@@ -57,7 +57,7 @@ def union(list, worldSize):
 
 if __name__ == "__main__":
     list = [0, 2]
-    result = union(list, 16)
+    result = unionB(list, 16)
     print(result)
     # TODO: close socket after use (in both unionA.py and unionB.py)
 

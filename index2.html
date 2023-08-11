@@ -258,56 +258,137 @@
         <div class="row">
           <div class="col-md-12">
             <div class="titlepage">
-              <h2>See The Algorithm In Action</h2>
-              <span
-                >Insert List of numbers to be calculated. The algorithm will
-                calculate the union of the two lists and return the result to
-                both parties.
-              </span>
-              <div
-                style="
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                "
-              >
-                <button
-                  id="sendDefaultData"
-                  class="btn btn-warning btn-lg btn-block"
-                  style="width: fit-content; padding-right: 50px"
-                >
-                  Click Me to send the message [1,2,3] to Alice
-                </button>
-                <br />
-                <div>
-                  <label for="message"
-                    >Message:
-                    <input
-                      type="text"
-                      id="union_message"
-                      name="message"
-                      value="3,5,9"
-                      style="display: block; margin: 0 auto; width: 55%"
-                    />
-                  </label>
-                  <button id="unionData">Send Union Data</button>
+              <h3 class="styled-union">Union</h3>
+              <div style="display: flex; justify-content: space-between">
+                <!-- Left content (Settings and Buttons) -->
+                <div style="flex: 1; margin-right: 30px; padding: 20px">
+                  <span
+                    style="
+                      display: block;
+                      margin-bottom: 20px;
+                      font-size: 16px;
+                      line-height: 1.5;
+                    "
+                  >
+                    Insert List of numbers to be calculated. The algorithm will
+                    calculate the union of the two lists and return the result
+                    to both parties.
+                  </span>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      gap: 20px;
+                      align-items: center;
+                    "
+                  >
+                    <button
+                      id="sendDefaultData"
+                      class="outline-button"
+                      style="
+                        padding: 10px 50px;
+                        font-size: 16px;
+                        margin-bottom: 20px;
+                      "
+                    >
+                      Click Me to send the message [1,2,5] to Bob
+                    </button>
+
+                    <div
+                      style="
+                        width: 100%;
+                        display: flex;
+                        flex-direction: row;
+                        gap: 15px;
+                        align-items: center;
+                      "
+                    >
+                      <label
+                        for="message"
+                        style="
+                          font-size: 16px;
+                          display: block;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Message:
+                      </label>
+                      <input
+                        type="text"
+                        id="union_message"
+                        name="message"
+                        value="5,7,9"
+                        style="
+                          margin: 0 auto;
+                          width: 55%;
+                          padding: 10px;
+                          font-size: 16px;
+                        "
+                      />
+                      <button
+                        class="outline-button"
+                        id="unionData"
+                        style="padding: 10px 20px; font-size: 16px"
+                      >
+                        Send Data
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right content (data-div) -->
+                <div style="flex: 1; margin-left: 20px">
+                  <div class="flexc">
+                    <div id="data-div" class="hidden floating-div"></div>
+                  </div>
                 </div>
               </div>
-              <div class="flexc">
-                <div id="data-div" class="hidden floating-div"></div>
-              </div>
-              <div class="flexc">
-                <div id="network-container">
-                  <div id="mynetwork"></div>
-                  <button onclick="addNode()">Add Node</button>
-                  <button onclick="addEdge()">Add Edge</button>
-                  <button onclick="removeNode()">Remove Node</button>
-                  <button onclick="removeEdge()">Remove Edge</button>
+              <h3 class="styled-union" style="margin-top: 50px">
+                All Pairs Shortest Path
+              </h3>
+              <div style="display: flex; justify-content: space-between">
+                <!-- Left content (Result) -->
+                <div style="flex: 1; margin-right: 20px">
+                  <h4 id="result">Public Graph:</h4>
+                  <div id="mynetworkresult"></div>
                 </div>
-                <button class="outline-button" id="sendGraph">
-                  Click Me To Start Graph Calculation
-                </button>
+
+                <!-- Right content (Settings and Controls) -->
+                <div style="flex: 1; margin-left: 20px">
+                  <div class="flexc">
+                    <button
+                      class="outline-button"
+                      id="sendGraph"
+                      style="margin-top: 50px"
+                    >
+                      Click Me To Start Graph Calculation
+                    </button>
+                    <div id="network-container">
+                      <div id="mynetwork"></div>
+                      <div
+                        style="
+                          display: flex;
+                          flex-direction: row;
+                          justify-content: space-around;
+                          margin-top: 5px;
+                        "
+                      >
+                        <button class="outline-button" onclick="addNode()">
+                          Add Node
+                        </button>
+                        <button class="outline-button" onclick="addEdge()">
+                          Add Edge
+                        </button>
+                        <button class="outline-button" onclick="removeNode()">
+                          Remove Node
+                        </button>
+                        <button class="outline-button" onclick="removeEdge()">
+                          Remove Edge
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
